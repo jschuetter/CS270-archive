@@ -76,10 +76,10 @@ void *strmap_get(strmap_t *m, char *key) {
 	//List walk to find element
 	smel_t *curEl = m->strmap_buckets[index];
 	while (curEl->sme_next != NULL) {
-		if (curEl->sme_key == key) {
+		if (strcmp(curEl->sme_key, key)  == 0) {
 			void *rv = curEl->sme_key;
 			return rv;
-		}
+		} else curEl = curEl->sme_next;
 	}
 	return NULL;
 }
