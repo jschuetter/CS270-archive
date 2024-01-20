@@ -50,18 +50,23 @@ void *strmap_put(strmap_t *m, char *key, void *value) {
 	//Check for previous value at given key
 	void *rv = strmap_get(m, key);
 
-	//Find bucket for new element
-	//Check for existing linked list in bucket
-	int index = hash(strmap_getnbuckets(m), key);
-	if (m->strmap_buckets[index] != NULL) {
-		
-	}
-
 	//Allocate new element and initialize with given values
-	smel_t* newEl = (smel_t *) malloc(sizeof(smel_t));
+	smel_t *newEl = (smel_t *) malloc(sizeof(smel_t));
 	
 	newEl->sme_key = key;
 	newEl->sme_value = value;
+	newEl->sme_next = NULL;
 	
+	//Find bucket for new element
+	//Check for existing linked list in bucket
+	int index = hash(strmap_getnbuckets(m), key);
+	if (m->strmap_buckets[index] != NULL) { //If bucket already contains elements
+		smel_t *curEl = *strmap_buckets[index];
+		while (curEl->sme_next != NULL) curEl = curEl->sme_next;  //Navigate to end of linked list
+		curEl->sme_next = newEl;
+	} else { //If bucket is currently empty
+		strmap_buckets[index] = newEl;
+	}
 
+	return rv;  //Return previous value of key (if it exists)
 }
