@@ -1,5 +1,6 @@
 #include <stdio.h> // for printf, ONLY IN strmap_dump
 #include <string.h> // for strcmp
+#include <stdlib.h> // for malloc, calloc, etc.
 #define MAX_BUCKETS  10000
 #define MIN_BUCKETS  10
 

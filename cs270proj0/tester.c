@@ -20,7 +20,9 @@ void doput(char *k,void *v) {
 }
 
 int main() {
+  printf("Create strmap\n");
   m = strmap_create(101);
+  printf("Add elements\n");
   doput(key1,(void *)1);
   doput(key2,(void *)2);
   doput(key3,(void *)3);
@@ -33,6 +35,7 @@ int main() {
   doput(key7,(void *)700);
   doput(key1,(void *)100);
   strmap_dump(m);
+  printf("Remove elements\n");
   strmap_remove(m,key7);
   strmap_remove(m,key1);
   strmap_dump(m);
