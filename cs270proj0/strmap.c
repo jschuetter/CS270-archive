@@ -83,9 +83,32 @@ void *strmap_get(strmap_t *m, char *key) {
 	smel_t *curEl = m->strmap_buckets[index];
 	while (curEl->sme_next != NULL) {
 		if (strcmp(curEl->sme_key, key)  == 0) {
-			void *rv = curEl->sme_key;
+			void *rv = curEl->sme_value;
 			return rv;
 		} else curEl = curEl->sme_next;
 	}
 	return NULL;
+}
+
+void *strmap_remove(strmap_t *m, char *key) {
+	//Find index of key
+	int index = hash(strmap_getnbuckets(m), key);
+	if (m->strmap_buckets[index] == NULL) return NULL; //Return null if bucket has no elements
+	
+	//List walk to find element
+	smel_t *curEl = m->strmap_buckets[index];
+	smel_t *prevEl = NULL;
+	while (curEl->sme_next != NULL) {
+		if (strcmp(curEl->sme_key, key)  == 0) { //If key matches, remove element
+			void *rv = curEl->sme_value; //Get return value
+			if (prevEl != NULL) {
+				prevEl->sme_next = curEl->sme_next;
+			} else m->strmap_buckets[index] = curEl->sme_next;
+			return rv; //Return element value after element is found and removed
+		} else {
+			prevEl = curEl;
+			curEl = curEl->sme_next;
+		}
+	}
+	return NULL; //Return null if element is not in list
 }
