@@ -68,3 +68,18 @@ void *strmap_put(strmap_t *m, char *key, void *value) {
 
 	return rv;  //Return previous value of key (if it exists)
 }
+
+void *strmap_get(strmap_t *m, char *key) {
+	//Find index of key
+	int index = hash(strmap_getnbuckets(m), key);
+
+	//List walk to find element
+	smel_t *curEl = m->strmap_buckets[index];
+	while (curEl->sme_next != NULL) {
+		if (curEl->sme_key == key) {
+			void *rv = curEl->sme_key;
+			return rv;
+		}
+	}
+	return NULL;
+}
