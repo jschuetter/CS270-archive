@@ -1,7 +1,5 @@
 #include "strmap.h"
 #include <stdlib.h>
-//#include <stdio.h>
-//#include <string.h>
 
 //Hash function for (deterministically) generating location in map based on key value
 //@param key: string value of key
@@ -38,22 +36,22 @@ strmap_t *strmap_create (int numbuckets) {
 	rv->strmap_nbuckets = numbuckets;
 	rv->strmap_buckets =  (smel_t **) calloc(numbuckets,sizeof(void *)); //Initialize bucket array according to numbuckets argument
 	retcheck(rv->strmap_buckets);
-//	if (rv->**strmap_buckets == NULL) {
-//		perror("malloc");
-//		exit(0);
-//	}
 
 	return rv;
 }
 
 void *strmap_put(strmap_t *m, char *key, void *value) {
+	//Allocate memory for key string to avoid dereference error
+	char *keyPtr = (char *) malloc(sizeof(key));
+	keyPtr = key;
+
 	//Check for previous value at given key
 	void *rv = strmap_get(m, key);
 
 	//Allocate new element and initialize with given values
 	smel_t *newEl = (smel_t *) malloc(sizeof(smel_t));
 	
-	newEl->sme_key = key;
+	newEl->sme_key = keyPtr;
 	newEl->sme_value = value;
 	newEl->sme_next = NULL;
 	
