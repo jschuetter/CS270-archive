@@ -57,7 +57,7 @@ void *strmap_put(strmap_t *m, char *key, void *value) {
 	
 	//Find bucket for new element
 	//Check for existing linked list in bucket
-	int index = hash(strmap_getnbuckets(m), key);
+	int index = hash(m->strmap_nbuckets, key);
 	if (m->strmap_buckets[index] != NULL) { //If bucket already contains elements
 		smel_t *curEl = *strmap_buckets[index];
 		char **nextKey = curEl->sme_next->sme_key; //Get key of next element
@@ -77,7 +77,7 @@ void *strmap_put(strmap_t *m, char *key, void *value) {
 
 void *strmap_get(strmap_t *m, char *key) {
 	//Find index of key
-	int index = hash(strmap_getnbuckets(m), key);
+	int index = hash(m->strmap_nbuckets, key);
 
 	//List walk to find element
 	smel_t *curEl = m->strmap_buckets[index];
@@ -92,7 +92,7 @@ void *strmap_get(strmap_t *m, char *key) {
 
 void *strmap_remove(strmap_t *m, char *key) {
 	//Find index of key
-	int index = hash(strmap_getnbuckets(m), key);
+	int index = hash(m->strmap_nbuckets, key);
 	if (m->strmap_buckets[index] == NULL) return NULL; //Return null if bucket has no elements
 	
 	//List walk to find element
@@ -111,4 +111,29 @@ void *strmap_remove(strmap_t *m, char *key) {
 		}
 	}
 	return NULL; //Return null if element is not in list
+}
+
+int strmap_getsize(strmap_t *m) {
+	return m->strmap_size;
+}
+
+int strmap_getnbuckets(strmap_t *m) {
+	return m->strmap_nbuckets;
+}
+
+void strmap_dump(strmap_t *m) {
+	//Print total size
+	printf("total elements = %i.\n",m->strmap_size);
+
+	//Iterate over all buckets
+	for (int i = 0; i < m->strmap_nbuckets; i++) {
+		smel_t *curEl = m->strmap_buckets[i];
+		//Iterate over all elements in bucket (if non-empty)
+		if (curEl != NULL) {
+			printf("Bucket %i:\n",i);
+			while (curEl->sme_next != NULL) {
+				printf("\t%s->%p\n",curEl->sme_key, curEl->sme_value);
+			}
+		}
+	}	
 }
