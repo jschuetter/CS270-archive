@@ -60,7 +60,13 @@ void *strmap_put(strmap_t *m, char *key, void *value) {
 	int index = hash(strmap_getnbuckets(m), key);
 	if (m->strmap_buckets[index] != NULL) { //If bucket already contains elements
 		smel_t *curEl = *strmap_buckets[index];
-		while (curEl->sme_next != NULL) curEl = curEl->sme_next;  //Navigate to end of linked list
+		char **nextKey = curEl->sme_next->sme_key; //Get key of next element
+		while (curEl->sme_next != NULL && strcmp(nextKey, keyPtr) < 0) { //Walk list to find lexical ordering
+			curEl = curEl->sme_next;
+			nextKey = curEl->sme_next->sme_key;
+		}
+		//Insert newEl between curEl and next element
+		newEl->sme_next = curEl->sme_next;
 		curEl->sme_next = newEl;
 	} else { //If bucket is currently empty
 		strmap_buckets[index] = newEl;
