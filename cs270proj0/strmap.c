@@ -42,22 +42,13 @@ void *strmap_put(strmap_t *m, char *key, void *value) {
 
 	//Allocate memory for key string to avoid dereference error
 	char *keyPtr = strdup(key);//(char *) malloc(sizeof(key));
-//	*keyPtr = strdup(key);
-//	printf("Saved key to heap\n");
-
-	//Check for previous value at given key - move to within 
-//	void *rv = strmap_get(m, key);
-//	printf("Got previous key value %p\n",rv);
 
 	//Allocate new element and initialize with given values
 	smel_t *newEl = (smel_t *) malloc(sizeof(smel_t));
 	
 	newEl->sme_key = keyPtr;
 	newEl->sme_value = value;
-//	newEl->sme_next = NULL;  //Initialized below
 	
-//	printf("Created new element, key: %s\n",keyPtr);
-
 	//Find bucket for new element
 	//Check for existing linked list in bucket
 	int index = hash(m->strmap_nbuckets, key);
@@ -76,7 +67,6 @@ void *strmap_put(strmap_t *m, char *key, void *value) {
 //EXIT CASE 2: key of curEl matches key of head of list
 		} else if (strcmp(curEl->sme_key, keyPtr) == 0) { //In case of matching keys, remove older key and return value
 			rv = curEl->sme_value;
-//			printf("Matching key found - single element\n");
 
 			m->strmap_buckets[index] = newEl; //Replace curEl with newEl
 			newEl->sme_next = curEl->sme_next;
@@ -86,18 +76,11 @@ void *strmap_put(strmap_t *m, char *key, void *value) {
 			return rv;
 		}
 
-//		smel_t *prevEl = NULL;
-//		char *nextKey = NULL;
-//		if (curEl->sme_next != NULL) curEl->sme_next->sme_key; //Get key of next element
-
 //EXIT CASE 3: default
 		//Walk list to find lexical ordering
 		while (curEl->sme_next != NULL && strcmp(curEl->sme_next->sme_key, keyPtr) < 0) { //Compare key of next element with given key
-//			prevEl = curEl;
 			curEl = curEl->sme_next;
-//			nextKey = curEl->sme_next->sme_key;
 		}
-//		printf("Position found\n");
 
 		//Check for matching keys
 		if (curEl->sme_next != NULL) {
@@ -105,21 +88,12 @@ void *strmap_put(strmap_t *m, char *key, void *value) {
 			if (strcmp(rmEl->sme_key, keyPtr) == 0) {
 				//If matching key is found, remove element and decrement strmap_size
 				rv = rmEl->sme_value; //Store value to be returned
-//				printf("Matching key found\n");
 
 				curEl->sme_next = rmEl->sme_next;
 				free(rmEl);
 				m->strmap_size--;
 			}
 		}
-		//Handle case where curEl is head of list
-//		if (m->strmap_buckets[index] == curEl) {
-//			rv = curEl->sme_value;
-//			printf("Matching key found - single element\n");
-//
-//			m->strmap_buckets[index] = newEl;
-//			newEl->sme_next = NULL;
-//		}
 
 		//Insert newEl between curEl and next element
 		newEl->sme_next = curEl->sme_next;
@@ -139,7 +113,6 @@ void *strmap_get(strmap_t *m, char *key) {
 //EXIT CASE 1: bucket is empty
 //Returns null
 	if (m->strmap_buckets[index] == NULL) return NULL;
-//	printf("Index found: %i\n",index);
 
 	//List walk to find element
 	smel_t *curEl = m->strmap_buckets[index];
@@ -153,7 +126,7 @@ void *strmap_get(strmap_t *m, char *key) {
 	}
 //EXIT CASE 3: no matching element in found
 //Returns null
-	return NULL; //Return null if element not found in list
+	return NULL; 
 }
 
 void *strmap_remove(strmap_t *m, char *key) {
