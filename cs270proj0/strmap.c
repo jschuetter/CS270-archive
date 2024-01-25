@@ -2,6 +2,7 @@
 // String hash map implementation
 // Jacob Schuetter
 // Updated 25 January 2024
+// All code contained herein has been written by the author
 
 
 #include "strmap.h"
