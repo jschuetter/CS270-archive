@@ -1,3 +1,4 @@
 We have to stand with our Martian allies.
 0 1 4 9 16 25 36
-
+3 n 1572
+14 7
