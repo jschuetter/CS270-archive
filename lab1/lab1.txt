@@ -1,0 +1,900 @@
+Script started on 2024-01-26 15:05:39-05:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="103" LINES="54"]
+[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ ./mystery
+[?2004lUsage: ./mystery <x> <y>
+[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ ./mystery 0 1
+[?2004larguments must greater than 1.
+[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ ./mystery 10 0[K20
+[?2004lSorry.
+[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ ./myster 2 3
+[?2004lbash: ./myster: No such file or directory
+[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ ./myster 2 3[1@y
+[?2004lCongratulations!
+[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ ./mystery 3 4
+[?2004lCongratulations!
+[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ ./mystery 2 4
+[?2004lSorry.
+[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ objs[Kdump -d mystery | more[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kman objdump
+[?2004l[?1049h[22;0;0t[?1h=OBJDUMP(1)                              GNU Development Tools                             OBJDUMP(1)[m
+[m
+[1mNAME[0m[m
+       objdump - display information from object files[m
+[m
+[1mSYNOPSIS[0m[m
+       objdump [[1m-a[0m|[1m--archive-headers[0m][m
+               [[1m-b[0m [4mbfdname[24m|[1m--target=[0m[4mbfdname[24m][m
+               [[1m-C[0m|[1m--demangle[0m[=[4mstyle[24m] ][m
+               [[1m-d[0m|[1m--disassemble[0m[=[4msymbol[24m]][m
+               [[1m-D[0m|[1m--disassemble-all[0m][m
+               [[1m-z[0m|[1m--disassemble-zeroes[0m][m
+               [[1m-EB[0m|[1m-EL[0m|[1m--endian=[0m{big | little }][m
+               [[1m-f[0m|[1m--file-headers[0m][m
+               [[1m-F[0m|[1m--file-offsets[0m][m
+               [[1m--file-start-context[0m][m
+               [[1m-g[0m|[1m--debugging[0m][m
+               [[1m-e[0m|[1m--debugging-tags[0m][m
+               [[1m-h[0m|[1m--section-headers[0m|[1m--headers[0m][m
+               [[1m-i[0m|[1m--info[0m][m
+               [[1m-j[0m [4msection[24m|[1m--section=[0m[4msection[24m][m
+               [[1m-l[0m|[1m--line-numbers[0m][m
+               [[1m-S[0m|[1m--source[0m][m
+               [[1m--source-comment[0m[=[4mtext[24m]][m
+               [[1m-m[0m [4mmachine[24m|[1m--architecture=[0m[4mmachine[24m][m
+               [[1m-M[0m [4moptions[24m|[1m--disassembler-options=[0m[4moptions[24m][m
+               [[1m-p[0m|[1m--private-headers[0m][m
+               [[1m-P[0m [4moptions[24m|[1m--private=[0m[4moptions[24m][m
+               [[1m-r[0m|[1m--reloc[0m][m
+               [[1m-R[0m|[1m--dynamic-reloc[0m][m
+               [[1m-s[0m|[1m--full-contents[0m][m
+               [[1m-W[lLiaprmfFsoORtUuTgAck][0m|[m
+                [1m--dwarf[0m[=rawline,=decodedline,=info,=abbrev,=pubnames,=aranges,=macro,=frames,=frames-i[m nterp,=str,=str-offsets,=loc,=Ranges,=pubtypes,=trace_info,=trace_abbrev,=trace_aranges,=gdb_index,=add[m r,=cu_index,=links]][m
+               [[1m-WK[0m|[1m--dwarf=follow-links[0m][m
+               [[1m-WN[0m|[1m--dwarf=no-follow-links[0m][m
+               [[1m-L[0m|[1m--process-links[0m][m
+               [[1m--ctf=[0m[4msection[24m][m
+               [[1m-G[0m|[1m--stabs[0m][m
+               [[1m-t[0m|[1m--syms[0m][m
+               [[1m-T[0m|[1m--dynamic-syms[0m][m
+               [[1m-x[0m|[1m--all-headers[0m][m
+               [[1m-w[0m|[1m--wide[0m][m
+               [[1m--start-address=[0m[4maddress[24m][m
+               [[1m--stop-address=[0m[4maddress[24m][m
+               [[1m--no-addresses[0m][m
+               [[1m--prefix-addresses[0m][m
+               [[1m--[no-]show-raw-insn[0m][m
+               [[1m--adjust-vma=[0m[4moffset[24m][m
+               [[1m--dwarf-depth=[0m[4mn[24m][m
+               [[1m--dwarf-start=[0m[4mn[24m][m
+               [[1m--ctf-parent=[0m[4msection[24m][m
+[7m Manual page objdump(1) line 1 (press h for help or q to quit)[27m[K[K[?1l>[?1049l[23;0;0t[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ objdump -d mystery | more
+[?2004l
+mystery:     file format elf64-x86-64
+
+
+Disassembly of section .init:
+
+0000000000001000 <_init>:
+    1000:	f3 0f 1e fa          	endbr64 
+    1004:	48 83 ec 08          	sub    $0x8,%rsp
+    1008:	48 8b 05 d9 2f 00 00 	mov    0x2fd9(%rip),%rax        # 3fe8 <__gmon_start__@Base>
+    100f:	48 85 c0             	test   %rax,%rax
+    1012:	74 02                	je     1016 <_init+0x16>
+    1014:	ff d0                	call   *%rax
+    1016:	48 83 c4 08          	add    $0x8,%rsp
+    101a:	c3                   	ret    
+
+Disassembly of section .plt:
+
+0000000000001020 <.plt>:
+    1020:	ff 35 82 2f 00 00    	push   0x2f82(%rip)        # 3fa8 <_GLOBAL_OFFSET_TABLE_+0x8>
+    1026:	f2 ff 25 83 2f 00 00 	bnd jmp *0x2f83(%rip)        # 3fb0 <_GLOBAL_OFFSET_TABLE_+0x10
+>
+    102d:	0f 1f 00             	nopl   (%rax)
+    1030:	f3 0f 1e fa          	endbr64 
+    1034:	68 00 00 00 00       	push   $0x0
+    1039:	f2 e9 e1 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    103f:	90                   	nop
+    1040:	f3 0f 1e fa          	endbr64 
+    1044:	68 01 00 00 00       	push   $0x1
+    1049:	f2 e9 d1 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    104f:	90                   	nop
+    1050:	f3 0f 1e fa          	endbr64 
+    1054:	68 02 00 00 00       	push   $0x2
+    1059:	f2 e9 c1 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    105f:	90                   	nop
+    1060:	f3 0f 1e fa          	endbr64 
+    1064:	68 03 00 00 00       	push   $0x3
+    1069:	f2 e9 b1 ff ff ff    	bnd jmp 1020 <_init+0x20>
+    106f:	90                   	nop
+
+Disassembly of section .plt.got:
+
+0000000000001070 <__cxa_finalize@plt>:
+    1070:	f3 0f 1e fa          	endbr64 
+    1074:	f2 ff 25 7d 2f 00 00 	bnd jmp *0x2f7d(%rip)        # 3ff8 <__cxa_finalize@GLIBC_2.2.5
+>
+    107b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+Disassembly of section .plt.sec:
+
+0000000000001080 <puts@plt>:
+    1080:	f3 0f 1e fa          	endbr64 
+    1084:	f2 ff 25 2d 2f 00 00 	bnd jmp *0x2f2d(%rip)        # 3fb8 <puts@GLIBC_2.2.5>
+[7m--More--[27m    108b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+[7m--More--[27m[K
+0000000000001090 <strtol@plt>:
+    1090:	f3 0f 1e fa          	endbr64 
+    1094:	f2 ff 25 25 2f 00 00 	bnd jmp *0x2f25(%rip)        # 3fc0 <strtol@GLIBC_2.2.5>
+    109b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+00000000000010a0 <fwrite@plt>:
+    10a0:	f3 0f 1e fa          	endbr64 
+    10a4:	f2 ff 25 1d 2f 00 00 	bnd jmp *0x2f1d(%rip)        # 3fc8 <fwrite@GLIBC_2.2.5>
+    10ab:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+00000000000010b0 <__fprintf_chk@plt>:
+    10b0:	f3 0f 1e fa          	endbr64 
+    10b4:	f2 ff 25 15 2f 00 00 	bnd jmp *0x2f15(%rip)        # 3fd0 <__fprintf_chk@GLIBC_2.3.4>
+    10bb:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+Disassembly of section .text:
+
+00000000000010c0 <_start>:
+    10c0:	f3 0f 1e fa          	endbr64 
+    10c4:	31 ed                	xor    %ebp,%ebp
+    10c6:	49 89 d1             	mov    %rdx,%r9
+    10c9:	5e                   	pop    %rsi
+    10ca:	48 89 e2             	mov    %rsp,%rdx
+    10cd:	48 83 e4 f0          	and    $0xfffffffffffffff0,%rsp
+    10d1:	50                   	push   %rax
+    10d2:	54                   	push   %rsp
+    10d3:	45 31 c0             	xor    %r8d,%r8d
+    10d6:	31 c9                	xor    %ecx,%ecx
+    10d8:	48 8d 3d df 00 00 00 	lea    0xdf(%rip),%rdi        # 11be <main>
+    10df:	ff 15 f3 2e 00 00    	call   *0x2ef3(%rip)        # 3fd8 <__libc_start_main@GLIBC_2.3
+4>
+    10e5:	f4                   	hlt    
+    10e6:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
+    10ed:	00 00 00 
+
+00000000000010f0 <deregister_tm_clones>:
+    10f0:	48 8d 3d 19 2f 00 00 	lea    0x2f19(%rip),%rdi        # 4010 <__TMC_END__>
+    10f7:	48 8d 05 12 2f 00 00 	lea    0x2f12(%rip),%rax        # 4010 <__TMC_END__>
+    10fe:	48 39 f8             	cmp    %rdi,%rax
+    1101:	74 15                	je     1118 <deregister_tm_clones+0x28>
+    1103:	48 8b 05 d6 2e 00 00 	mov    0x2ed6(%rip),%rax        # 3fe0 <_ITM_deregisterTMCloneT
+able@Base>
+    110a:	48 85 c0             	test   %rax,%rax
+    110d:	74 09                	je     1118 <deregister_tm_clones+0x28>
+    110f:	ff e0                	jmp    *%rax
+    1111:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+    1118:	c3                   	ret    
+    1119:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+
+0000000000001120 <register_tm_clones>:
+    1120:	48 8d 3d e9 2e 00 00 	lea    0x2ee9(%rip),%rdi        # 4010 <__TMC_END__>
+    1127:	48 8d 35 e2 2e 00 00 	lea    0x2ee2(%rip),%rsi        # 4010 <__TMC_END__>
+[7m--More--[27m    112e:	48 29 fe             	sub    %rdi,%rsi
+    1131:	48 89 f0             	mov    %rsi,%rax
+    1134:	48 c1 ee 3f          	shr    $0x3f,%rsi
+    1138:	48 c1 f8 03          	sar    $0x3,%rax
+    113c:	48 01 c6             	add    %rax,%rsi
+    113f:	48 d1 fe             	sar    %rsi
+    1142:	74 14                	je     1158 <register_tm_clones+0x38>
+    1144:	48 8b 05 a5 2e 00 00 	mov    0x2ea5(%rip),%rax        # 3ff0 <_ITM_registerTMCloneTab
+le@Base>
+    114b:	48 85 c0             	test   %rax,%rax
+    114e:	74 08                	je     1158 <register_tm_clones+0x38>
+    1150:	ff e0                	jmp    *%rax
+    1152:	66 0f 1f 44 00 00    	nopw   0x0(%rax,%rax,1)
+    1158:	c3                   	ret    
+    1159:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+
+0000000000001160 <__do_global_dtors_aux>:
+    1160:	f3 0f 1e fa          	endbr64 
+    1164:	80 3d bd 2e 00 00 00 	cmpb   $0x0,0x2ebd(%rip)        # 4028 <completed.0>
+    116b:	75 2b                	jne    1198 <__do_global_dtors_aux+0x38>
+    116d:	55                   	push   %rbp
+    116e:	48 83 3d 82 2e 00 00 	cmpq   $0x0,0x2e82(%rip)        # 3ff8 <__cxa_finalize@GLIBC_2.
+2.5>
+    1175:	00 
+    1176:	48 89 e5             	mov    %rsp,%rbp
+    1179:	74 0c                	je     1187 <__do_global_dtors_aux+0x27>
+    117b:	48 8b 3d 86 2e 00 00 	mov    0x2e86(%rip),%rdi        # 4008 <__dso_handle>
+    1182:	e8 e9 fe ff ff       	call   1070 <__cxa_finalize@plt>
+    1187:	e8 64 ff ff ff       	call   10f0 <deregister_tm_clones>
+    118c:	c6 05 95 2e 00 00 01 	movb   $0x1,0x2e95(%rip)        # 4028 <completed.0>
+    1193:	5d                   	pop    %rbp
+    1194:	c3                   	ret    
+    1195:	0f 1f 00             	nopl   (%rax)
+    1198:	c3                   	ret    
+    1199:	0f 1f 80 00 00 00 00 	nopl   0x0(%rax)
+
+00000000000011a0 <frame_dummy>:
+    11a0:	f3 0f 1e fa          	endbr64 
+    11a4:	e9 77 ff ff ff       	jmp    1120 <register_tm_clones>
+
+00000000000011a9 <foo>:
+    11a9:	f3 0f 1e fa          	endbr64 
+    11ad:	89 f8                	mov    %edi,%eax
+    11af:	eb 02                	jmp    11b3 <foo+0xa>
+    11b1:	29 f0                	sub    %esi,%eax
+    11b3:	39 f0                	cmp    %esi,%eax
+    11b5:	74 06                	je     11bd <foo+0x14>
+    11b7:	7d f8                	jge    11b1 <foo+0x8>
+    11b9:	29 c6                	sub    %eax,%esi
+    11bb:	eb f6                	jmp    11b3 <foo+0xa>
+    11bd:	c3                   	ret    
+
+00000000000011be <main>:
+[7m--More--[27m[K[7m--More--[27m[K[7m--More--[27m[K[7m--More--[27m[K[7m--More--[27m    11be:	f3 0f 1e fa          	endbr64 
+    11c2:	41 54                	push   %r12
+    11c4:	55                   	push   %rbp
+    11c5:	53                   	push   %rbx
+    11c6:	48 89 f3             	mov    %rsi,%rbx
+    11c9:	83 ff 03             	cmp    $0x3,%edi
+    11cc:	74 2a                	je     11f8 <main+0x3a>
+    11ce:	48 8b 0e             	mov    (%rsi),%rcx
+    11d1:	48 8d 15 2c 0e 00 00 	lea    0xe2c(%rip),%rdx        # 2004 <_IO_stdin_used+0x4>
+    11d8:	be 01 00 00 00       	mov    $0x1,%esi
+    11dd:	48 8b 3d 3c 2e 00 00 	mov    0x2e3c(%rip),%rdi        # 4020 <stderr@GLIBC_2.2.5>
+    11e4:	b8 00 00 00 00       	mov    $0x0,%eax
+    11e9:	e8 c2 fe ff ff       	call   10b0 <__fprintf_chk@plt>
+    11ee:	b8 01 00 00 00       	mov    $0x1,%eax
+    11f3:	5b                   	pop    %rbx
+    11f4:	5d                   	pop    %rbp
+    11f5:	41 5c                	pop    %r12
+    11f7:	c3                   	ret    
+    11f8:	48 8b 7e 08          	mov    0x8(%rsi),%rdi
+    11fc:	ba 0a 00 00 00       	mov    $0xa,%edx
+    1201:	be 00 00 00 00       	mov    $0x0,%esi
+    1206:	e8 85 fe ff ff       	call   1090 <strtol@plt>
+    120b:	48 89 c5             	mov    %rax,%rbp
+    120e:	48 8b 7b 10          	mov    0x10(%rbx),%rdi
+    1212:	ba 0a 00 00 00       	mov    $0xa,%edx
+    1217:	be 00 00 00 00       	mov    $0x0,%esi
+    121c:	e8 6f fe ff ff       	call   1090 <strtol@plt>
+    1221:	89 c6                	mov    %eax,%esi
+    1223:	83 fd 01             	cmp    $0x1,%ebp
+    1226:	0f 9e c2             	setle  %dl
+    1229:	83 f8 01             	cmp    $0x1,%eax
+    122c:	0f 9e c0             	setle  %al
+    122f:	08 c2                	or     %al,%dl
+    1231:	75 1f                	jne    1252 <main+0x94>
+    1233:	89 ef                	mov    %ebp,%edi
+    1235:	e8 6f ff ff ff       	call   11a9 <foo>
+    123a:	83 f8 01             	cmp    $0x1,%eax
+    123d:	74 3a                	je     1279 <main+0xbb>
+    123f:	48 8d 3d d1 0d 00 00 	lea    0xdd1(%rip),%rdi        # 2017 <_IO_stdin_used+0x17>
+    1246:	e8 35 fe ff ff       	call   1080 <puts@plt>
+    124b:	b8 00 00 00 00       	mov    $0x0,%eax
+    1250:	eb a1                	jmp    11f3 <main+0x35>
+    1252:	48 8b 0d c7 2d 00 00 	mov    0x2dc7(%rip),%rcx        # 4020 <stderr@GLIBC_2.2.5>
+    1259:	ba 1f 00 00 00       	mov    $0x1f,%edx
+    125e:	be 01 00 00 00       	mov    $0x1,%esi
+    1263:	48 8d 3d c6 0d 00 00 	lea    0xdc6(%rip),%rdi        # 2030 <_IO_stdin_used+0x30>
+    126a:	e8 31 fe ff ff       	call   10a0 <fwrite@plt>
+    126f:	b8 02 00 00 00       	mov    $0x2,%eax
+    1274:	e9 7a ff ff ff       	jmp    11f3 <main+0x35>
+    1279:	48 8d 3d 9e 0d 00 00 	lea    0xd9e(%rip),%rdi        # 201e <_IO_stdin_used+0x1e>
+    1280:	e8 fb fd ff ff       	call   1080 <puts@plt>
+    1285:	b8 00 00 00 00       	mov    $0x0,%eax
+    128a:	e9 64 ff ff ff       	jmp    11f3 <main+0x35>
+[7m--More--[27m[K
+Disassembly of section .fini:
+
+0000000000001290 <_fini>:
+    1290:	f3 0f 1e fa          	endbr64 
+    1294:	48 83 ec 08          	sub    $0x8,%rsp
+    1298:	48 83 c4 08          	add    $0x8,%rsp
+    129c:	c3                   	ret    
+[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ objdump -d mystery | more[14Pman objdump./mystery 2 43[C[C2[C[C[2Pman objdump
+[?2004l[?1049h[22;0;0t[?1h=OBJDUMP(1)                              GNU Development Tools                             OBJDUMP(1)[m
+[m
+[1mNAME[0m[m
+       objdump - display information from object files[m
+[m
+[1mSYNOPSIS[0m[m
+       objdump [[1m-a[0m|[1m--archive-headers[0m][m
+               [[1m-b[0m [4mbfdname[24m|[1m--target=[0m[4mbfdname[24m][m
+               [[1m-C[0m|[1m--demangle[0m[=[4mstyle[24m] ][m
+               [[1m-d[0m|[1m--disassemble[0m[=[4msymbol[24m]][m
+               [[1m-D[0m|[1m--disassemble-all[0m][m
+               [[1m-z[0m|[1m--disassemble-zeroes[0m][m
+               [[1m-EB[0m|[1m-EL[0m|[1m--endian=[0m{big | little }][m
+               [[1m-f[0m|[1m--file-headers[0m][m
+               [[1m-F[0m|[1m--file-offsets[0m][m
+               [[1m--file-start-context[0m][m
+               [[1m-g[0m|[1m--debugging[0m][m
+               [[1m-e[0m|[1m--debugging-tags[0m][m
+               [[1m-h[0m|[1m--section-headers[0m|[1m--headers[0m][m
+               [[1m-i[0m|[1m--info[0m][m
+               [[1m-j[0m [4msection[24m|[1m--section=[0m[4msection[24m][m
+               [[1m-l[0m|[1m--line-numbers[0m][m
+               [[1m-S[0m|[1m--source[0m][m
+               [[1m--source-comment[0m[=[4mtext[24m]][m
+               [[1m-m[0m [4mmachine[24m|[1m--architecture=[0m[4mmachine[24m][m
+               [[1m-M[0m [4moptions[24m|[1m--disassembler-options=[0m[4moptions[24m][m
+               [[1m-p[0m|[1m--private-headers[0m][m
+               [[1m-P[0m [4moptions[24m|[1m--private=[0m[4moptions[24m][m
+               [[1m-r[0m|[1m--reloc[0m][m
+               [[1m-R[0m|[1m--dynamic-reloc[0m][m
+               [[1m-s[0m|[1m--full-contents[0m][m
+               [[1m-W[lLiaprmfFsoORtUuTgAck][0m|[m
+                [1m--dwarf[0m[=rawline,=decodedline,=info,=abbrev,=pubnames,=aranges,=macro,=frames,=frames-i[m nterp,=str,=str-offsets,=loc,=Ranges,=pubtypes,=trace_info,=trace_abbrev,=trace_aranges,=gdb_index,=add[m r,=cu_index,=links]][m
+               [[1m-WK[0m|[1m--dwarf=follow-links[0m][m
+               [[1m-WN[0m|[1m--dwarf=no-follow-links[0m][m
+               [[1m-L[0m|[1m--process-links[0m][m
+               [[1m--ctf=[0m[4msection[24m][m
+               [[1m-G[0m|[1m--stabs[0m][m
+               [[1m-t[0m|[1m--syms[0m][m
+               [[1m-T[0m|[1m--dynamic-syms[0m][m
+               [[1m-x[0m|[1m--all-headers[0m][m
+               [[1m-w[0m|[1m--wide[0m][m
+               [[1m--start-address=[0m[4maddress[24m][m
+               [[1m--stop-address=[0m[4maddress[24m][m
+               [[1m--no-addresses[0m][m
+               [[1m--prefix-addresses[0m][m
+               [[1m--[no-]show-raw-insn[0m][m
+               [[1m--adjust-vma=[0m[4moffset[24m][m
+               [[1m--dwarf-depth=[0m[4mn[24m][m
+               [[1m--dwarf-start=[0m[4mn[24m][m
+               [[1m--ctf-parent=[0m[4msection[24m][m
+[7m Manual page objdump(1) line 1 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K               [[1m--no-recurse-limit[0m|[1m--recurse-limit[0m][m
+[7m Manual page objdump(1) line 2 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K               [[1m--special-syms[0m][m
+[7m Manual page objdump(1) line 3 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K               [[1m--prefix=[0m[4mprefix[24m][m
+[7m Manual page objdump(1) line 4 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K               [[1m--prefix-strip=[0m[4mlevel[24m][m
+[7m Manual page objdump(1) line 5 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K               [[1m--insn-width=[0m[4mwidth[24m][m
+[7m Manual page objdump(1) line 6 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K               [[1m--visualize-jumps[=color|=extended-color|=off][0m[m
+[7m Manual page objdump(1) line 7 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K               [[1m-U[0m [4mmethod[24m] [[1m--unicode=[0m[4mmethod[24m][m
+[7m Manual page objdump(1) line 8 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K               [[1m-V[0m|[1m--version[0m][m
+[7m Manual page objdump(1) line 9 (press h for help or q to quit)[27m[K[K [KESCESC[KOO[KBB[K               [[1m-H[0m|[1m--help[0m][m
+[7m Manual page objdump(1) line 10 (press h for help or q to quit)[27m[K[K               [4mobjfile[24m...[m
+[m
+[1mDESCRIPTION[0m[m
+       [1mobjdump[0m displays information about one or more object files.  The options control what[m
+       particular information to display.  This information is mostly useful to programmers who are[m
+       working on the compilation tools, as opposed to programmers who just want their program to[m
+       compile and work.[m
+[m
+       [4mobjfile[24m... are the object files to be examined.  When you specify archives, [1mobjdump[0m shows[m
+       information on each of the member object files.[m
+[m
+[1mOPTIONS[0m[m
+       The long and short forms of options, shown here as alternatives, are equivalent.  At least[m
+       one option from the list [1m-a,-d,-D,-e,-f,-g,-G,-h,-H,-p,-P,-r,-R,-s,-S,-t,-T,-V,-x[0m must be[m
+       given.[m
+[m
+       [1m-a[0m[m
+       [1m--archive-header[0m[m
+           If any of the [4mobjfile[24m files are archives, display the archive header information (in a[m
+           format similar to [1mls[0m [1m-l[0m).  Besides the information you could list with [1mar[0m [1mtv[0m, [1mobjdump[0m [1m-a[0m[m
+           shows the object file format of each archive member.[m
+[m
+       [1m--adjust-vma=[0m[4moffset[24m[m
+           When dumping information, first add [4moffset[24m to all the section addresses.  This is useful[m
+           if the section addresses do not correspond to the symbol table, which can happen when[m
+           putting sections at particular addresses when using a format which can not represent[m
+           section addresses, such as a.out.[m
+[m
+       [1m-b[0m [4mbfdname[24m[m
+       [1m--target=[0m[4mbfdname[24m[m
+           Specify that the object-code format for the object files is [4mbfdname[24m.  This option may not[m
+           be necessary; [4mobjdump[24m can automatically recognize many formats.[m
+[m
+           For example,[m
+[m
+                   objdump -b oasys -m vax -h fu.o[m
+[m
+           displays summary information from the section headers ([1m-h[0m) of [4mfu.o[24m, which is explicitly[m
+           identified ([1m-m[0m) as a VAX object file in the format produced by Oasys compilers.  You can[m
+           list the formats available with the [1m-i[0m option.[m
+[m
+       [1m-C[0m[m
+       [1m--demangle[=[0m[4mstyle[24m[1m][0m[m
+           Decode ([4mdemangle[24m) low-level symbol names into user-level names.  Besides removing any[m
+           initial underscore prepended by the system, this makes C++ function names readable.[m
+           Different compilers have different mangling styles. The optional demangling style[m
+           argument can be used to choose an appropriate demangling style for your compiler.[m
+[m
+       [1m--recurse-limit[0m[m
+       [1m--no-recurse-limit[0m[m
+       [1m--recursion-limit[0m[m
+       [1m--no-recursion-limit[0m[m
+           Enables or disables a limit on the amount of recursion performed whilst demangling[m
+[7m Manual page objdump(1) line 61 (press h for help or q to quit)[27m[K[K           strings.  Since the name mangling formats allow for an infinite level of recursion it is[m
+           possible to create strings whose decoding will exhaust the amount of stack space[m
+           available on the host machine, triggering a memory fault.  The limit tries to prevent[m
+           this from happening by restricting recursion to 2048 levels of nesting.[m
+[m
+           The default is for this limit to be enabled, but disabling it may be necessary in order[m
+           to demangle truly complicated names.  Note however that if the recursion limit is[m
+           disabled then stack exhaustion is possible and any bug reports about such an event will[m
+           be rejected.[m
+[m
+       [1m-g[0m[m
+       [1m--debugging[0m[m
+           Display debugging information.  This attempts to parse STABS debugging format information[m
+           stored in the file and print it out using a C like syntax.  If no STABS debugging was[m
+           found this option falls back on the [1m-W[0m option to print any DWARF information in the file.[m
+[m
+       [1m-e[0m[m
+       [1m--debugging-tags[0m[m
+           Like [1m-g[0m, but the information is generated in a format compatible with ctags tool.[m
+[m
+       [1m-d[0m[m
+       [1m--disassemble[0m[m
+       [1m--disassemble=[0m[4msymbol[24m[m
+           Display the assembler mnemonics for the machine instructions from the input file.  This[m
+           option only disassembles those sections which are expected to contain instructions.  If[m
+           the optional [4msymbol[24m argument is given, then display the assembler mnemonics starting at[m
+           [4msymbol[24m.  If [4msymbol[24m is a function name then disassembly will stop at the end of the[m
+           function, otherwise it will stop when the next symbol is encountered.  If there are no[m
+           matches for [4msymbol[24m then nothing will be displayed.[m
+[m
+           Note if the [1m--dwarf=follow-links[0m option is enabled then any symbol tables in linked debug[m
+           info files will be read in and used when disassembling.[m
+[m
+       [1m-D[0m[m
+       [1m--disassemble-all[0m[m
+           Like [1m-d[0m, but disassemble the contents of all sections, not just those expected to contain[m
+           instructions.[m
+[m
+           This option also has a subtle effect on the disassembly of instructions in code sections.[m
+           When option [1m-d[0m is in effect objdump will assume that any symbols present in a code[m
+           section occur on the boundary between instructions and it will refuse to disassemble[m
+           across such a boundary.  When option [1m-D[0m is in effect however this assumption is[m
+           supressed.  This means that it is possible for the output of [1m-d[0m and [1m-D[0m to differ if, for[m
+           example, data is stored in code sections.[m
+[m
+           If the target is an ARM architecture this switch also has the effect of forcing the[m
+           disassembler to decode pieces of data found in code sections as if they were[m
+           instructions.[m
+[m
+           Note if the [1m--dwarf=follow-links[0m option is enabled then any symbol tables in linked debug[m
+           info files will be read in and used when disassembling.[m
+[m
+       [1m--no-addresses[0m[m
+[7m Manual page objdump(1) line 114 (press h for help or q to quit)[27m[K[K           When disassembling, don't print addresses on each line or for symbols and relocation[m
+           offsets.  In combination with [1m--no-show-raw-insn[0m this may be useful for comparing[m
+           compiler output.[m
+[m
+       [1m--prefix-addresses[0m[m
+           When disassembling, print the complete address on each line.  This is the older[m
+           disassembly format.[m
+[m
+       [1m-EB[0m[m
+       [1m-EL[0m[m
+       [1m--endian={big|little}[0m[m
+           Specify the endianness of the object files.  This only affects disassembly.  This can be[m
+           useful when disassembling a file format which does not describe endianness information,[m
+           such as S-records.[m
+[m
+       [1m-f[0m[m
+       [1m--file-headers[0m[m
+           Display summary information from the overall header of each of the [4mobjfile[24m files.[m
+[m
+       [1m-F[0m[m
+       [1m--file-offsets[0m[m
+           When disassembling sections, whenever a symbol is displayed, also display the file offset[m
+           of the region of data that is about to be dumped.  If zeroes are being skipped, then when[m
+           disassembly resumes, tell the user how many zeroes were skipped and the file offset of[m
+           the location from where the disassembly resumes.  When dumping sections, display the file[m
+           offset of the location from where the dump starts.[m
+[m
+       [1m--file-start-context[0m[m
+           Specify that when displaying interlisted source code/disassembly (assumes [1m-S[0m) from a file[m
+           that has not yet been displayed, extend the context to the start of the file.[m
+[m
+       [1m-h[0m[m
+       [1m--section-headers[0m[m
+       [1m--headers[0m[m
+           Display summary information from the section headers of the object file.[m
+[m
+           File segments may be relocated to nonstandard addresses, for example by using the [1m-Ttext[0m,[m
+           [1m-Tdata[0m, or [1m-Tbss[0m options to [1mld[0m.  However, some object file formats, such as a.out, do not[m
+           store the starting address of the file segments.  In those situations, although [1mld[0m[m
+           relocates the sections correctly, using [1mobjdump[0m [1m-h[0m to list the file section headers[m
+           cannot show the correct addresses.  Instead, it shows the usual addresses, which are[m
+           implicit for the target.[m
+[m
+           Note, in some cases it is possible for a section to have both the READONLY and the NOREAD[m
+           attributes set.  In such cases the NOREAD attribute takes precedence, but [1mobjdump[0m will[m
+           report both since the exact setting of the flag bits might be important.[m
+[m
+       [1m-H[0m[m
+       [1m--help[0m[m
+           Print a summary of the options to [1mobjdump[0m and exit.[m
+[m
+       [1m-i[0m[m
+       [1m--info[0m[m
+[7m Manual page objdump(1) line 167 (press h for help or q to quit)[27m[K[K           Display a list showing all architectures and object formats available for specification[m
+           with [1m-b[0m or [1m-m[0m.[m
+[m
+       [1m-j[0m [4mname[24m[m
+       [1m--section=[0m[4mname[24m[m
+           Display information only for section [4mname[24m.[m
+[m
+       [1m-L[0m[m
+       [1m--process-links[0m[m
+           Display the contents of non-debug sections found in separate debuginfo files that are[m
+           linked to the main file.  This option automatically implies the [1m-WK[0m option, and only[m
+           sections requested by other command line options will be displayed.[m
+[m
+       [1m-l[0m[m
+       [1m--line-numbers[0m[m
+           Label the display (using debugging information) with the filename and source line numbers[m
+           corresponding to the object code or relocs shown.  Only useful with [1m-d[0m, [1m-D[0m, or [1m-r[0m.[m
+[m
+       [1m-m[0m [4mmachine[24m[m
+       [1m--architecture=[0m[4mmachine[24m[m
+           Specify the architecture to use when disassembling object files.  This can be useful when[m
+           disassembling object files which do not describe architecture information, such as[m
+           S-records.  You can list the available architectures with the [1m-i[0m option.[m
+[m
+           If the target is an ARM architecture then this switch has an additional effect.  It[m
+           restricts the disassembly to only those instructions supported by the architecture[m
+           specified by [4mmachine[24m.  If it is necessary to use this switch because the input file does[m
+           not contain any architecture information, but it is also desired to disassemble all the[m
+           instructions use [1m-marm[0m.[m
+[m
+       [1m-M[0m [4moptions[24m[m
+       [1m--disassembler-options=[0m[4moptions[24m[m
+           Pass target specific information to the disassembler.  Only supported on some targets.[m
+           If it is necessary to specify more than one disassembler option then multiple [1m-M[0m options[m
+           can be used or can be placed together into a comma separated list.[m
+[m
+           For ARC, [1mdsp[0m controls the printing of DSP instructions, [1mspfp[0m selects the printing of FPX[m
+           single precision FP instructions, [1mdpfp[0m selects the printing of FPX double precision FP[m
+           instructions, [1mquarkse_em[0m selects the printing of special QuarkSE-EM instructions, [1mfpuda[0m[m
+           selects the printing of double precision assist instructions, [1mfpus[0m selects the printing[m
+           of FPU single precision FP instructions, while [1mfpud[0m selects the printing of FPU double[m
+           precision FP instructions.  Additionally, one can choose to have all the immediates[m
+           printed in hexadecimal using [1mhex[0m.  By default, the short immediates are printed using the[m
+           decimal representation, while the long immediate values are printed as hexadecimal.[m
+[m
+           [1mcpu=...[0m allows one to enforce a particular ISA when disassembling instructions,[m
+           overriding the [1m-m[0m value or whatever is in the ELF file.  This might be useful to select[m
+           ARC EM or HS ISA, because architecture is same for those and disassembler relies on[m
+           private ELF header data to decide if code is for EM or HS.  This option might be[m
+           specified multiple times - only the latest value will be used.  Valid values are same as[m
+           for the assembler [1m-mcpu=...[0m option.[m
+[m
+           If the target is an ARM architecture then this switch can be used to select which[m
+[7m Manual page objdump(1) line 220 (press h for help or q to quit)[27m[K[K[?1l>[?1049l[23;0;0t[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ strings mystery
+[?2004l/lib64/ld-linux-x86-64.so.2
+__cxa_finalize
+__libc_start_main
+__fprintf_chk
+strtol
+puts
+stderr
+fwrite
+libc.so.6
+GLIBC_2.3.4
+GLIBC_2.2.5
+GLIBC_2.34
+_ITM_deregisterTMCloneTable
+__gmon_start__
+_ITM_registerTMCloneTable
+PTE1
+u+UH
+ATUSH
+[]A\
+Usage: %s <x> <y>
+Sorry.
+Congratulations!
+arguments must greater than 1.
+:*3$"
+GCC: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+Scrt1.o
+__abi_tag
+crtstuff.c
+deregister_tm_clones
+__do_global_dtors_aux
+completed.0
+__do_global_dtors_aux_fini_array_entry
+frame_dummy
+__frame_dummy_init_array_entry
+mystery.c
+__FRAME_END__
+_DYNAMIC
+__GNU_EH_FRAME_HDR
+_GLOBAL_OFFSET_TABLE_
+__libc_start_main@GLIBC_2.34
+_ITM_deregisterTMCloneTable
+puts@GLIBC_2.2.5
+_edata
+_fini
+__data_start
+__gmon_start__
+strtol@GLIBC_2.2.5
+__dso_handle
+_IO_stdin_used
+_end
+__bss_start
+main
+fwrite@GLIBC_2.2.5
+__TMC_END__
+__fprintf_chk@GLIBC_2.3.4
+_ITM_registerTMCloneTable
+__cxa_finalize@GLIBC_2.2.5
+_init
+stderr@GLIBC_2.2.5
+.symtab
+.strtab
+.shstrtab
+.interp
+.note.gnu.property
+.note.gnu.build-id
+.note.ABI-tag
+.gnu.hash
+.dynsym
+.dynstr
+.gnu.version
+.gnu.version_r
+.rela.dyn
+.rela.plt
+.init
+.plt.got
+.plt.sec
+.text
+.fini
+.rodata
+.eh_frame_hdr
+.eh_frame
+.init_array
+.fini_array
+.dynamic
+.data
+.bss
+.comment
+[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ [H[2J]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ gdb mysteyr[K[Kry
+[?2004l[35;1mGNU gdb (Ubuntu 12.1-0ubuntu1~22.04) 12.1[m
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from [32mmystery[m...
+(No debugging symbols found in [32mmystery[m)
+[?2004h(gdb) list
+[?2004lNo symbol table is loaded.  Use the "file" command.
+[?2004h(gdb) break main
+[?2004lBreakpoint 1 at [34m0x11be[m
+[?2004h(gdb) file
+[?2004lNo executable file now.
+Error in re-setting breakpoint 1: No symbol table is loaded.  Use the "file" command.
+No symbol file now.
+[?2004h(gdb) break main
+[?2004lNo symbol table is loaded.  Use the "file" command.
+[?2004hMake breakpoint pending on future shared library load? (y or [n]) n
+[?2004l[?2004h(gdb) break
+[?2004lNo default breakpoint address now.
+[?2004h(gdb) break main
+[?2004lNo symbol table is loaded.  Use the "file" command.
+[?2004hMake breakpoint pending on future shared library load? (y or [n]) y
+[?2004lBreakpoint 2 (main) pending.
+[?2004h(gdb) quit
+[?2004l[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ gdb mystery
+[?2004l[35;1mGNU gdb (Ubuntu 12.1-0ubuntu1~22.04) 12.1[m
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from [32mmystery[m...
+(No debugging symbols found in [32mmystery[m)
+[?2004h(gdb) break main
+[?2004lBreakpoint 1 at [34m0x11be[m
+[?2004h(gdb) disassemble
+[?2004lNo frame selected.
+[?2004h(gdb) disassemble [K
+[?2004lNo frame selected.
+[?2004h(gdb) run [K
+[?2004lStarting program: [32m/home/jmsc261/cs270/cs270lab1/mystery[m 
+dis[Thread debugging using libthread_db enabled]
+Using host libthread_db library "[32m/lib/x86_64-linux-gnu/libthread_db.so.1[m".
+a
+Breakpoint 1, [34m0x00005555555551be[m in [33mmain[m ()
+[?2004h[?2004l[?2004h(gdb) disassemble
+[?2004lDump of assembler code for function [33mmain[m:
+=> [34m0x00005555555551be[m <+0>:	[32mendbr64[39;49;00m[37m [39;49;00m
+   [34m0x00005555555551c2[m <+4>:	[32mpush[39;49;00m[37m   [39;49;00m[31m%r12[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551c4[m <+6>:	[32mpush[39;49;00m[37m   [39;49;00m[31m%rbp[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551c5[m <+7>:	[32mpush[39;49;00m[37m   [39;49;00m[31m%rbx[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551c6[m <+8>:	[32mmov[39;49;00m[37m    [39;49;00m[31m%rsi[39;49;00m,[31m%rbx[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551c9[m <+11>:	[32mcmp[39;49;00m[37m    [39;49;00m[31m$0x3[39;49;00m,[31m%edi[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551cc[m <+14>:	[32mje[39;49;00m[37m     [39;49;00m[34m0x5555555551f8[39;49;00m <[31mmain[39;49;00m+[34m58[39;49;00m>[37m[39;49;00m
+   [34m0x00005555555551ce[m <+16>:	[32mmov[39;49;00m[37m    [39;49;00m([31m%rsi[39;49;00m),[31m%rcx[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551d1[m <+19>:	[32mlea[39;49;00m[37m    [39;49;00m[34m0xe2c[39;49;00m([31m%rip[39;49;00m),[31m%rdx[39;49;00m[37m        [39;49;00m[37m# 0x555555556004[39;49;00m
+   [34m0x00005555555551d8[m <+26>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x1[39;49;00m,[31m%esi[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551dd[m <+31>:	[32mmov[39;49;00m[37m    [39;49;00m[34m0x2e3c[39;49;00m([31m%rip[39;49;00m),[31m%rdi[39;49;00m[37m        [39;49;00m[37m# 0x555555558020 <stderr@GLIBC_2.2.5>[39;49;00m
+   [34m0x00005555555551e4[m <+38>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x0[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551e9[m <+43>:	[32mcall[39;49;00m[37m   [39;49;00m[34m0x5555555550b0[39;49;00m <[31m__fprintf_chk@plt[39;49;00m>[37m[39;49;00m
+   [34m0x00005555555551ee[m <+48>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x1[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551f3[m <+53>:	[32mpop[39;49;00m[37m    [39;49;00m[31m%rbx[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551f4[m <+54>:	[32mpop[39;49;00m[37m    [39;49;00m[31m%rbp[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551f5[m <+55>:	[32mpop[39;49;00m[37m    [39;49;00m[31m%r12[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551f7[m <+57>:	[32mret[39;49;00m[37m    [39;49;00m
+   [34m0x00005555555551f8[m <+58>:	[32mmov[39;49;00m[37m    [39;49;00m[34m0x8[39;49;00m([31m%rsi[39;49;00m),[31m%rdi[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551fc[m <+62>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0xa[39;49;00m,[31m%edx[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555201[m <+67>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x0[39;49;00m,[31m%esi[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555206[m <+72>:	[32mcall[39;49;00m[37m   [39;49;00m[34m0x555555555090[39;49;00m <[31mstrtol@plt[39;49;00m>[37m[39;49;00m
+   [34m0x000055555555520b[m <+77>:	[32mmov[39;49;00m[37m    [39;49;00m[31m%rax[39;49;00m,[31m%rbp[39;49;00m[37m[39;49;00m
+   [34m0x000055555555520e[m <+80>:	[32mmov[39;49;00m[37m    [39;49;00m[34m0x10[39;49;00m([31m%rbx[39;49;00m),[31m%rdi[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555212[m <+84>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0xa[39;49;00m,[31m%edx[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555217[m <+89>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x0[39;49;00m,[31m%esi[39;49;00m[37m[39;49;00m
+   [34m0x000055555555521c[m <+94>:	[32mcall[39;49;00m[37m   [39;49;00m[34m0x555555555090[39;49;00m <[31mstrtol@plt[39;49;00m>[37m[39;49;00m
+   [34m0x0000555555555221[m <+99>:	[32mmov[39;49;00m[37m    [39;49;00m[31m%eax[39;49;00m,[31m%esi[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555223[m <+101>:	[32mcmp[39;49;00m[37m    [39;49;00m[31m$0x1[39;49;00m,[31m%ebp[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555226[m <+104>:	[32msetle[39;49;00m[37m  [39;49;00m[31m%dl[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555229[m <+107>:	[32mcmp[39;49;00m[37m    [39;49;00m[31m$0x1[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+   [34m0x000055555555522c[m <+110>:	[32msetle[39;49;00m[37m  [39;49;00m[31m%al[39;49;00m[37m[39;49;00m
+   [34m0x000055555555522f[m <+113>:	[32mor[39;49;00m[37m     [39;49;00m[31m%al[39;49;00m,[31m%dl[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555231[m <+115>:	[32mjne[39;49;00m[37m    [39;49;00m[34m0x555555555252[39;49;00m <[31mmain[39;49;00m+[34m148[39;49;00m>[37m[39;49;00m
+   [34m0x0000555555555233[m <+117>:	[32mmov[39;49;00m[37m    [39;49;00m[31m%ebp[39;49;00m,[31m%edi[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555235[m <+119>:	[32mcall[39;49;00m[37m   [39;49;00m[34m0x5555555551a9[39;49;00m <[31mfoo[39;49;00m>[37m[39;49;00m
+   [34m0x000055555555523a[m <+124>:	[32mcmp[39;49;00m[37m    [39;49;00m[31m$0x1[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+   [34m0x000055555555523d[m <+127>:	[32mje[39;49;00m[37m     [39;49;00m[34m0x555555555279[39;49;00m <[31mmain[39;49;00m+[34m187[39;49;00m>[37m[39;49;00m
+   [34m0x000055555555523f[m <+129>:	[32mlea[39;49;00m[37m    [39;49;00m[34m0xdd1[39;49;00m([31m%rip[39;49;00m),[31m%rdi[39;49;00m[37m        [39;49;00m[37m# 0x555555556017[39;49;00m
+   [34m0x0000555555555246[m <+136>:	[32mcall[39;49;00m[37m   [39;49;00m[34m0x555555555080[39;49;00m <[31mputs@plt[39;49;00m>[37m[39;49;00m
+   [34m0x000055555555524b[m <+141>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x0[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555250[m <+146>:	[32mjmp[39;49;00m[37m    [39;49;00m[34m0x5555555551f3[39;49;00m <[31mmain[39;49;00m+[34m53[39;49;00m>[37m[39;49;00m
+   [34m0x0000555555555252[m <+148>:	[32mmov[39;49;00m[37m    [39;49;00m[34m0x2dc7[39;49;00m([31m%rip[39;49;00m),[31m%rcx[39;49;00m[37m        [39;49;00m[37m# 0x555555558020 <stderr@GLIBC_2.2.5>[39;49;00m
+   [34m0x0000555555555259[m <+155>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x1f[39;49;00m,[31m%edx[39;49;00m[37m[39;49;00m
+   [34m0x000055555555525e[m <+160>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x1[39;49;00m,[31m%esi[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555263[m <+165>:	[32mlea[39;49;00m[37m    [39;49;00m[34m0xdc6[39;49;00m([31m%rip[39;49;00m),[31m%rdi[39;49;00m[37m        [39;49;00m[37m# 0x555555556030[39;49;00m
+   [34m0x000055555555526a[m <+172>:	[32mcall[39;49;00m[37m   [39;49;00m[34m0x5555555550a0[39;49;00m <[31mfwrite@plt[39;49;00m>[37m[39;49;00m
+   [34m0x000055555555526f[m <+177>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x2[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555274[m <+182>:	[32mjmp[39;49;00m[37m    [39;49;00m[34m0x5555555551f3[39;49;00m <[31mmain[39;49;00m+[34m53[39;49;00m>[37m[39;49;00m
+   [34m0x0000555555555279[m <+187>:	[32mlea[39;49;00m[37m    [39;49;00m[34m0xd9e[39;49;00m([31m%rip[39;49;00m),[31m%rdi[39;49;00m[37m        [39;49;00m[37m# 0x55555555601e[39;49;00m
+   [34m0x0000555555555280[m <+194>:	[32mcall[39;49;00m[37m   [39;49;00m[34m0x555555555080[39;49;00m <[31mputs@plt[39;49;00m>[37m[39;49;00m
+   [34m0x0000555555555285[m <+199>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x0[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+[?2004h--Type <RET> for more, q to quit, c to continue without paging-- c[K[Kc[K
+[?2004l   [34m0x000055555555528a[m <+204>:	[32mjmp[39;49;00m[37m    [39;49;00m[34m0x5555555551f3[39;49;00m <[31mmain[39;49;00m+[34m53[39;49;00m>[37m[39;49;00m
+End of assembler dump.
+[?2004h(gdb) run 10 20
+[?2004l[?2004hThe program being debugged has been started already.
+Start it from the beginning? (y or n) y
+[?2004lStarting program: [32m/home/jmsc261/cs270/cs270lab1/mystery[m 10 20
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "[32m/lib/x86_64-linux-gnu/libthread_db.so.1[m".
+
+Breakpoint 1, [34m0x00005555555551be[m in [33mmain[m ()
+[?2004h[?2004l[?2004h(gdb) disassemble
+[?2004lDump of assembler code for function [33mmain[m:
+=> [34m0x00005555555551be[m <+0>:	[32mendbr64[39;49;00m[37m [39;49;00m
+   [34m0x00005555555551c2[m <+4>:	[32mpush[39;49;00m[37m   [39;49;00m[31m%r12[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551c4[m <+6>:	[32mpush[39;49;00m[37m   [39;49;00m[31m%rbp[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551c5[m <+7>:	[32mpush[39;49;00m[37m   [39;49;00m[31m%rbx[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551c6[m <+8>:	[32mmov[39;49;00m[37m    [39;49;00m[31m%rsi[39;49;00m,[31m%rbx[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551c9[m <+11>:	[32mcmp[39;49;00m[37m    [39;49;00m[31m$0x3[39;49;00m,[31m%edi[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551cc[m <+14>:	[32mje[39;49;00m[37m     [39;49;00m[34m0x5555555551f8[39;49;00m <[31mmain[39;49;00m+[34m58[39;49;00m>[37m[39;49;00m
+   [34m0x00005555555551ce[m <+16>:	[32mmov[39;49;00m[37m    [39;49;00m([31m%rsi[39;49;00m),[31m%rcx[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551d1[m <+19>:	[32mlea[39;49;00m[37m    [39;49;00m[34m0xe2c[39;49;00m([31m%rip[39;49;00m),[31m%rdx[39;49;00m[37m        [39;49;00m[37m# 0x555555556004[39;49;00m
+   [34m0x00005555555551d8[m <+26>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x1[39;49;00m,[31m%esi[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551dd[m <+31>:	[32mmov[39;49;00m[37m    [39;49;00m[34m0x2e3c[39;49;00m([31m%rip[39;49;00m),[31m%rdi[39;49;00m[37m        [39;49;00m[37m# 0x555555558020 <stderr@GLIBC_2.2.5>[39;49;00m
+   [34m0x00005555555551e4[m <+38>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x0[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551e9[m <+43>:	[32mcall[39;49;00m[37m   [39;49;00m[34m0x5555555550b0[39;49;00m <[31m__fprintf_chk@plt[39;49;00m>[37m[39;49;00m
+   [34m0x00005555555551ee[m <+48>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x1[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551f3[m <+53>:	[32mpop[39;49;00m[37m    [39;49;00m[31m%rbx[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551f4[m <+54>:	[32mpop[39;49;00m[37m    [39;49;00m[31m%rbp[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551f5[m <+55>:	[32mpop[39;49;00m[37m    [39;49;00m[31m%r12[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551f7[m <+57>:	[32mret[39;49;00m[37m    [39;49;00m
+   [34m0x00005555555551f8[m <+58>:	[32mmov[39;49;00m[37m    [39;49;00m[34m0x8[39;49;00m([31m%rsi[39;49;00m),[31m%rdi[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551fc[m <+62>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0xa[39;49;00m,[31m%edx[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555201[m <+67>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x0[39;49;00m,[31m%esi[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555206[m <+72>:	[32mcall[39;49;00m[37m   [39;49;00m[34m0x555555555090[39;49;00m <[31mstrtol@plt[39;49;00m>[37m[39;49;00m
+   [34m0x000055555555520b[m <+77>:	[32mmov[39;49;00m[37m    [39;49;00m[31m%rax[39;49;00m,[31m%rbp[39;49;00m[37m[39;49;00m
+   [34m0x000055555555520e[m <+80>:	[32mmov[39;49;00m[37m    [39;49;00m[34m0x10[39;49;00m([31m%rbx[39;49;00m),[31m%rdi[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555212[m <+84>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0xa[39;49;00m,[31m%edx[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555217[m <+89>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x0[39;49;00m,[31m%esi[39;49;00m[37m[39;49;00m
+   [34m0x000055555555521c[m <+94>:	[32mcall[39;49;00m[37m   [39;49;00m[34m0x555555555090[39;49;00m <[31mstrtol@plt[39;49;00m>[37m[39;49;00m
+   [34m0x0000555555555221[m <+99>:	[32mmov[39;49;00m[37m    [39;49;00m[31m%eax[39;49;00m,[31m%esi[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555223[m <+101>:	[32mcmp[39;49;00m[37m    [39;49;00m[31m$0x1[39;49;00m,[31m%ebp[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555226[m <+104>:	[32msetle[39;49;00m[37m  [39;49;00m[31m%dl[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555229[m <+107>:	[32mcmp[39;49;00m[37m    [39;49;00m[31m$0x1[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+   [34m0x000055555555522c[m <+110>:	[32msetle[39;49;00m[37m  [39;49;00m[31m%al[39;49;00m[37m[39;49;00m
+   [34m0x000055555555522f[m <+113>:	[32mor[39;49;00m[37m     [39;49;00m[31m%al[39;49;00m,[31m%dl[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555231[m <+115>:	[32mjne[39;49;00m[37m    [39;49;00m[34m0x555555555252[39;49;00m <[31mmain[39;49;00m+[34m148[39;49;00m>[37m[39;49;00m
+   [34m0x0000555555555233[m <+117>:	[32mmov[39;49;00m[37m    [39;49;00m[31m%ebp[39;49;00m,[31m%edi[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555235[m <+119>:	[32mcall[39;49;00m[37m   [39;49;00m[34m0x5555555551a9[39;49;00m <[31mfoo[39;49;00m>[37m[39;49;00m
+   [34m0x000055555555523a[m <+124>:	[32mcmp[39;49;00m[37m    [39;49;00m[31m$0x1[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+   [34m0x000055555555523d[m <+127>:	[32mje[39;49;00m[37m     [39;49;00m[34m0x555555555279[39;49;00m <[31mmain[39;49;00m+[34m187[39;49;00m>[37m[39;49;00m
+   [34m0x000055555555523f[m <+129>:	[32mlea[39;49;00m[37m    [39;49;00m[34m0xdd1[39;49;00m([31m%rip[39;49;00m),[31m%rdi[39;49;00m[37m        [39;49;00m[37m# 0x555555556017[39;49;00m
+   [34m0x0000555555555246[m <+136>:	[32mcall[39;49;00m[37m   [39;49;00m[34m0x555555555080[39;49;00m <[31mputs@plt[39;49;00m>[37m[39;49;00m
+   [34m0x000055555555524b[m <+141>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x0[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555250[m <+146>:	[32mjmp[39;49;00m[37m    [39;49;00m[34m0x5555555551f3[39;49;00m <[31mmain[39;49;00m+[34m53[39;49;00m>[37m[39;49;00m
+   [34m0x0000555555555252[m <+148>:	[32mmov[39;49;00m[37m    [39;49;00m[34m0x2dc7[39;49;00m([31m%rip[39;49;00m),[31m%rcx[39;49;00m[37m        [39;49;00m[37m# 0x555555558020 <stderr@GLIBC_2.2.5>[39;49;00m
+   [34m0x0000555555555259[m <+155>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x1f[39;49;00m,[31m%edx[39;49;00m[37m[39;49;00m
+   [34m0x000055555555525e[m <+160>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x1[39;49;00m,[31m%esi[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555263[m <+165>:	[32mlea[39;49;00m[37m    [39;49;00m[34m0xdc6[39;49;00m([31m%rip[39;49;00m),[31m%rdi[39;49;00m[37m        [39;49;00m[37m# 0x555555556030[39;49;00m
+   [34m0x000055555555526a[m <+172>:	[32mcall[39;49;00m[37m   [39;49;00m[34m0x5555555550a0[39;49;00m <[31mfwrite@plt[39;49;00m>[37m[39;49;00m
+   [34m0x000055555555526f[m <+177>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x2[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+   [34m0x0000555555555274[m <+182>:	[32mjmp[39;49;00m[37m    [39;49;00m[34m0x5555555551f3[39;49;00m <[31mmain[39;49;00m+[34m53[39;49;00m>[37m[39;49;00m
+   [34m0x0000555555555279[m <+187>:	[32mlea[39;49;00m[37m    [39;49;00m[34m0xd9e[39;49;00m([31m%rip[39;49;00m),[31m%rdi[39;49;00m[37m        [39;49;00m[37m# 0x55555555601e[39;49;00m
+   [34m0x0000555555555280[m <+194>:	[32mcall[39;49;00m[37m   [39;49;00m[34m0x555555555080[39;49;00m <[31mputs@plt[39;49;00m>[37m[39;49;00m
+   [34m0x0000555555555285[m <+199>:	[32mmov[39;49;00m[37m    [39;49;00m[31m$0x0[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+[?2004h--Type <RET> for more, q to quit, c to continue without paging--
+[?2004l   [34m0x000055555555528a[m <+204>:	[32mjmp[39;49;00m[37m    [39;49;00m[34m0x5555555551f3[39;49;00m <[31mmain[39;49;00m+[34m53[39;49;00m>[37m[39;49;00m
+End of assembler dump.
+[?2004h(gdb) print $rdi
+[?2004l$1 = 3
+[?2004h(gdb) x[Kprint /x #[K$rsi[K[K[K[K[K[K[K$rsi
+[?2004l$2 = 140737488348264
+[?2004h(gdb) print /x $rsi
+[?2004l$3 = 0x7fffffffe468
+[?2004h(gdb) print [K[K[K[K[K[Kx /3g 0x7fffffffe468
+[?2004l[34m0x7fffffffe468[m:	0x00007fffffffe6d9	0x00007fffffffe6ff
+[34m0x7fffffffe478[m:	0x00007fffffffe702
+[?2004h(gdb) x /s 0x00007fffffffe6dy[K9
+[?2004l[34m0x7fffffffe6d9[m:	"/home/jmsc261/cs270/cs270lab1/mystery"
+[?2004h(gdb) x /s 0x00007fffffffe6d9[C[1P9[Kff
+[?2004l[34m0x7fffffffe6ff[m:	"10"
+[?2004h(gdb) x /s 0x00007fffffffe6ffd9[1P9[K69[K[Kd9
+[?2004l[34m0x7fffffffe6d9[m:	"/home/jmsc261/cs270/cs270lab1/mystery"
+[?2004h(gdb) x /s 0x00007fffffffe6d9ff[C[K[K[K702
+[?2004l[34m0x7fffffffe702[m:	"20"
+[?2004h(gdb) x /s 0x55555555080
+[?2004l[34m0x55555555080[m:	<error: [2mCannot access memory at address 0x55555555080[m>
+[?2004h(gdb) x /s 0x555555550805080
+[?2004l[34m0x555555555080[m <[33mputs@plt[m>:	"\363\017\036\372\362\377%-/"
+[?2004h(gdb) x /s 0x555555555080[1P08000007fffffffe702[C[C[C[C[C[C[C[C[C[C[C[C[C[5P555555550805080[C
+[?2004l[34m0x555555555080[m <[33mputs@plt[m>:	"\363\017\036\372\362\377%-/"
+[?2004h(gdb) x /s 0x555555555080[1P080[1P80[1P0[K601e
+[?2004l[34m0x55555555601e[m:	"Congratulations!"
+[?2004h(gdb) break foo
+[?2004lBreakpoint 2 at [34m0x5555555551a9[m
+[?2004h(gdb) where
+[?2004l#0  [34m0x00005555555551be[m in [33mmain[m ()
+[?2004h(gdb) continue
+[?2004lContinuing.
+
+Breakpoint 2, [34m0x00005555555551a9[m in [33mfoo[m ()
+[?2004h[?2004l[?2004h(gdb) disas
+[?2004lDump of assembler code for function [33mfoo[m:
+=> [34m0x00005555555551a9[m <+0>:	[32mendbr64[39;49;00m[37m [39;49;00m
+   [34m0x00005555555551ad[m <+4>:	[32mmov[39;49;00m[37m    [39;49;00m[31m%edi[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551af[m <+6>:	[32mjmp[39;49;00m[37m    [39;49;00m[34m0x5555555551b3[39;49;00m <[31mfoo[39;49;00m+[34m10[39;49;00m>[37m[39;49;00m
+   [34m0x00005555555551b1[m <+8>:	[32msub[39;49;00m[37m    [39;49;00m[31m%esi[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551b3[m <+10>:	[32mcmp[39;49;00m[37m    [39;49;00m[31m%esi[39;49;00m,[31m%eax[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551b5[m <+12>:	[32mje[39;49;00m[37m     [39;49;00m[34m0x5555555551bd[39;49;00m <[31mfoo[39;49;00m+[34m20[39;49;00m>[37m[39;49;00m
+   [34m0x00005555555551b7[m <+14>:	[32mjge[39;49;00m[37m    [39;49;00m[34m0x5555555551b1[39;49;00m <[31mfoo[39;49;00m+[34m8[39;49;00m>[37m[39;49;00m
+   [34m0x00005555555551b9[m <+16>:	[32msub[39;49;00m[37m    [39;49;00m[31m%eax[39;49;00m,[31m%esi[39;49;00m[37m[39;49;00m
+   [34m0x00005555555551bb[m <+18>:	[32mjmp[39;49;00m[37m    [39;49;00m[34m0x5555555551b3[39;49;00m <[31mfoo[39;49;00m+[34m10[39;49;00m>[37m[39;49;00m
+   [34m0x00005555555551bd[m <+20>:	[32mret[39;49;00m[37m    [39;49;00m
+End of assembler dump.
+[?2004h(gdb) quit
+[?2004l[?2004hA debugging session is active.
+
+	Inferior 1 [process 84774] will be killed.
+
+Quit anyway? (y or n) y
+[?2004l[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ msytery [K[K[K[K[K[K[K[Kmystery 7 42
+[?2004lmystery: command not found
+[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ ./mystery 7 42
+[?2004lSorry.
+[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ ./myy[Kster [Ky 5 7
+[?2004lCongratulations!
+[?2004h]0;jmsc261@jmsc261: ~/cs270/cs270lab1[01;32mjmsc261@jmsc261[00m:[01;34m~/cs270/cs270lab1[00m$ quit[K[K[K[Kexit
+[?2004lexit
+
+Script done on 2024-01-26 15:53:15-05:00 [COMMAND_EXIT_CODE="0"]
