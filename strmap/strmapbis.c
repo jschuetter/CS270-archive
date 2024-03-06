@@ -198,35 +198,30 @@ double strmap_getloadfactor(strmap_t *map) {
 
 
 //Used in strmap_resize for inserting elements into new bucket array
-//Mostly copied from strmap_put, with minor changes
+//Similar to code in strmap_put, with significant changes
 //Returns 1 when collision is detected
 static int findBucket (smel_t *el, smel_t **buckets, int nbuckets) {
 
 	int index = hash(nbuckets, el->sme_key);
 	el->sme_next = NULL; //Set next ptr to null to avoid cross-references to old array layout
+
 	if (buckets[index] != NULL) { //If bucket already contains elements
 		smel_t *curEl = buckets[index];
-		//Check for cases where key of curEl is greater than or equal to keyPtr
 
-//EXIT CASE 1: key of curEl is greater than el->sme_key (insert el first)
-		if (strcmp(curEl->sme_key, el->sme_key) > 0) { 
+		if (strcmp(curEl->sme_key, el->sme_key) > 0) { //Case 1: insert el at head of list
 			buckets[index] = el;
 			el->sme_next = curEl;
 
 			return 0;
 
-//EXIT CASE 2: key of curEl matches key of head of list
-//Should not occur in this function
-		
-		} else if (strcmp(curEl->sme_key, el->sme_key) == 0) {
+		} else if (strcmp(curEl->sme_key, el->sme_key) == 0) { //Case 2: el matches element at head of list - should not occur
 			printf("Case 2\n");
 			printf("COLLISION in strmap_resize:\n");
 			printf("%s->%p\n", el->sme_key, el->sme_value);
 			return 1;
 		}
 
-//EXIT CASE 3: default
-		//Walk list to find lexical ordering
+		//Default case: walk list to find lexical ordering
 		while (curEl->sme_next != NULL && strcmp(curEl->sme_next->sme_key, el->sme_key) < 0) { //Compare key of next element with given key
 //			printf("CurEl: %s, NextEl: %s\n", curEl->sme_key, curEl->sme_next->sme_key);
 			curEl = curEl->sme_next;
