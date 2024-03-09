@@ -243,7 +243,7 @@ void strmap_resize(strmap_t *map, double targetLF) {
 	double lfMin = (1-LFSLOP)*targetLF;
 	double lfMax = (1+LFSLOP)*targetLF;
 
-	if (curLF < lfMin || curLF > lfMax) {
+	if (curLF < lfMin || curLF > lfMax) { //Check postcondition
 		//Calculate ideal number of buckets for current size and given load factor
 		int idealBuckets = (int)(map->strmap_size/targetLF);
 
@@ -277,6 +277,6 @@ void strmap_resize(strmap_t *map, double targetLF) {
 		free(oldBuckets);
 		map->strmap_nbuckets = idealBuckets;
 		map->strmap_size = numElements;
-	} else return;
+	} else return; //Return if postcondition is already satisfied
 }
 
