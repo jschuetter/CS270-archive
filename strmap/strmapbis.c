@@ -51,7 +51,8 @@ void *strmap_put(strmap_t *m, char *key, void *value) {
 	
 	newEl->sme_key = keyPtr;
 	newEl->sme_value = value;
-	
+	newEl->sme_next = NULL;
+
 	//Find bucket for new element
 	//Check for existing linked list in bucket
 	int index = hash(m->strmap_nbuckets, key);
