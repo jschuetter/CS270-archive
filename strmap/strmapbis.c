@@ -51,7 +51,8 @@ void *strmap_put(strmap_t *m, char *key, void *value) {
 	
 	newEl->sme_key = keyPtr;
 	newEl->sme_value = value;
-	
+	newEl->sme_next = NULL;
+
 	//Find bucket for new element
 	//Check for existing linked list in bucket
 	int index = hash(m->strmap_nbuckets, key);
@@ -215,39 +216,21 @@ static int findBucket (smel_t *el, smel_t **buckets, int nbuckets) {
 			return 0;
 
 		} else if (strcmp(curEl->sme_key, el->sme_key) == 0) { //Case 2: el matches element at head of list - should not occur
-			printf("Case 2\n");
-			printf("COLLISION in strmap_resize:\n");
-			printf("%s->%p\n", el->sme_key, el->sme_value);
 			return 1;
 		}
 
 		//Default case: walk list to find lexical ordering
 		while (curEl->sme_next != NULL && strcmp(curEl->sme_next->sme_key, el->sme_key) < 0) { //Compare key of next element with given key
-//			printf("CurEl: %s, NextEl: %s\n", curEl->sme_key, curEl->sme_next->sme_key);
 			curEl = curEl->sme_next;
-//			printf("List walk\n");
 		}
 
-	/*	//Check for matching keys
-		if (curEl->sme_next != NULL) {
-			if (strcmp(curEl->sme_next->sme_key, el->sme_key) == 0) {
-				printf("COLLISION in strmap_resize:\n");
-				printf("%s->%p\n", el->sme_key, el->sme_value);
-				return 1;
-			}
-		}
-*/
 		//Insert newEl between curEl and next element
 		if (curEl->sme_next != el) { //Condition to check whether curEl->sme_next is already set to el (avoid infinite loop in list walk)
 			el->sme_next = curEl->sme_next;
 		}
 		curEl->sme_next = el;
-//		el->sme_next = NULL;
-//		if (el->sme_next != NULL) printf("Wrote: %s, sme_next: %s, prev: %s\n", el->sme_key, el->sme_next->sme_key, curEl->sme_key);
-//		else printf("Write: %s, prev: %s\n", el->sme_key, curEl->sme_key);
-
+	
 	} else { //If bucket is currently empty
-//		printf("Else block\n");
 		buckets[index] = el;
 	}
 
@@ -260,14 +243,13 @@ void strmap_resize(strmap_t *map, double targetLF) {
 	double lfMin = (1-LFSLOP)*targetLF;
 	double lfMax = (1+LFSLOP)*targetLF;
 
-	if (curLF < lfMin || curLF > lfMax) {
+	if (curLF < lfMin || curLF > lfMax) { //Check postcondition
 		//Calculate ideal number of buckets for current size and given load factor
 		int idealBuckets = (int)(map->strmap_size/targetLF);
 
 		//Clip idealBuckets if necessary
 		if (idealBuckets > MAX_BUCKETS) idealBuckets = MAX_BUCKETS;
 		else if (idealBuckets < MIN_BUCKETS) idealBuckets = MIN_BUCKETS; 
-//		printf("Ideal buckets: %d; MAX_BUCKETS: %d\n", idealBuckets, MAX_BUCKETS);
 
 		//Create new bucket array
 		smel_t **newBuckets = (smel_t **) malloc(idealBuckets * sizeof(smel_t));
@@ -276,13 +258,10 @@ void strmap_resize(strmap_t *map, double targetLF) {
 			smel_t *curEl = map->strmap_buckets[i];
 			//Iterate over all elements in bucket to add to newBuckets
 			while (curEl != NULL) {
-//				printf("NumElements: %d, nextEl: %s\n", numElements, curEl->sme_key);
 				//int index = hash(idealBuckets, curEl->key);
 				smel_t *nextEl = curEl->sme_next;			
 				int mov = findBucket(curEl, newBuckets, idealBuckets);
 				if (mov == 1){
-//					printf("LOOP BREAK: COLLISION\n");
-					//printf("Duplicate key: %s\n", curEl->sme_key);
 					break; //Break loop if collision is detected
 				}
 				
@@ -297,11 +276,7 @@ void strmap_resize(strmap_t *map, double targetLF) {
 		newBuckets = NULL;
 		free(oldBuckets);
 		map->strmap_nbuckets = idealBuckets;
-
-		if (numElements != map->strmap_size) {
-			printf("CHANGE IN STRMAP_SIZE\n");
-		}
 		map->strmap_size = numElements;
-	} else return;
+	} else return; //Return if postcondition is already satisfied
 }
 
