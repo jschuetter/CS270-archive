@@ -196,14 +196,15 @@ int cache_access (cache_t *c, addr_t addr, void *value, int size, int iswrite) {
 			mem_access(writeAddr, evictLine->block, BLOCK_SIZE, 1);
 *///////////////////////
 
-			//if (c->cache_next != NULL) totalDelay += cache_access(c->cache_next, writeAddr, evictLine->block, BLOCK_SIZE, 1);
-			//else totalDelay += mem_access(writeAddr, evictLine->block, BLOCK_SIZE, 1);
+			if (c->cache_next != NULL) totalDelay += cache_access(c->cache_next, writeAddr, evictLine->block, BLOCK_SIZE, 1);
+			else totalDelay += mem_access(writeAddr, evictLine->block, BLOCK_SIZE, 1);
 
-			while (curLvl->cache_next != NULL) { //Recursively write back until memory level is reached
+/*			while (curLvl->cache_next != NULL) { //Recursively write back until memory level is reached
 				curLvl = curLvl->cache_next; 
 				totalDelay += cache_access(curLvl, writeAddr, evictLine->block, BLOCK_SIZE, 1);
 			}
 			totalDelay += mem_access(writeAddr, evictLine->block, BLOCK_SIZE, 1); //Write back to memory
+*/
 		}
 
 		evictLine->tag = addrTag;
@@ -237,7 +238,16 @@ void cache_flush(cache_t *c) {
 	//Iterate over all lines in all sets
 	for (int i = 0; i < 1 << c->cache_s; i++) {
 		for (int j = 0; j < c->cache_E; j++) {
-			c->cache_sets[i].lines[j].valid = 0;
+			cacheline_t *curLine = &(c->cache_sets[i].lines[j]);
+			if (curLine->dirty) {
+				//Writeback line if dirty
+				addr_t writeAddr = curLine->tag << c->cache_s; //Add tag and shift for set index
+				writeAddr += i; //Add set index
+				writeAddr = writeAddr << LOGBSIZE; //Shift for offset bits (left empty)
+				
+				cache_access(c->cache_next, writeAddr, curLine->block, BLOCK_SIZE, 1);
+			}
+			curLine->valid = 0;
 		}
 	}
 }
