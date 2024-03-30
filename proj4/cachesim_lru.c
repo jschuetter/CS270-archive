@@ -12,12 +12,12 @@
 #include <stdio.h>
 
 extern int mem_access(addr_t addr, void *value, int size, int iswrite);
+
+//Helper function for abstracting useinfo update
 static void update_useinfo(cache_t *c, cacheset_t *set, int lineNo);
 
 //Constants for min/max address values (for masking)
 const static int ADDR_MAX = 0xffffff;
-const static int ADDR_MIN = 0x000000;
-
 const static int BLOCK_SIZE = 1 << LOGBSIZE; //Block size in Bytes
 
 //Cache_create
@@ -60,6 +60,8 @@ cache_t *cache_create(int s, int E, int delay, cache_t *nextlevel) {
 	newCache->cache_E = E;
 	newCache->cache_delay = delay;
 	newCache->cache_next = nextlevel;
+
+	return newCache;
 }
 
 //Cache_access
@@ -74,16 +76,10 @@ int cache_access (cache_t *c, addr_t addr, void *value, int size, int iswrite) {
 	int totalDelay = 0;
 
 	//Find location of addr
-	// addr_t is type uint64_t = 64b
-	// tag / set / offset
-	// ?? bits / s bits / LOGBSIZE bits
 	int addrOffset = addr & ((1 << LOGBSIZE) - 1);
 	int addrIndex = addr >> LOGBSIZE;
 	addrIndex = addrIndex & ((1 << c->cache_s) - 1); //Set bit mask for set index
 	addr_t addrTag = addr >> (LOGBSIZE + c->cache_s);
-
-	//Debug print statement
-//	printf("%d | %d | %d\n", addrOffset, addrIndex, (int) addrTag);
 
 	cacheset_t *addrSet = &c->cache_sets[addrIndex];
 	int addrLineNo = -1; //Store index of line for useinfo
@@ -96,13 +92,11 @@ int cache_access (cache_t *c, addr_t addr, void *value, int size, int iswrite) {
 		}
 	}
 
-	//Define addrSet->useInfo as int[]
+	//Cast addrSet->useInfo to int[]
 	int *setUses= addrSet->useinfo;
 
 	//IF LINE WAS FOUND
 	if (addrLineNo != -1) {
-//		printf("Hit\n");
-
 		//Calculate memory address to be accessed
 		uint8_t *memAddr = &(addrSet->lines[addrLineNo].block[addrOffset]);
 
@@ -113,28 +107,14 @@ int cache_access (cache_t *c, addr_t addr, void *value, int size, int iswrite) {
 			//Set dirty bit
 			addrSet->lines[addrLineNo].dirty = 1;
 
-			//Debug print
-//			printf("Wrote \"%s\" to address %p in line %d, set %d", (char *) value, memAddr, addrLineNo, addrIndex);
-			
 		} else {
 			memmove(value, memAddr, size);
-
-			//Debug print
-//			printf("Read %d bytes from address %p in line %d, set %d", size, memAddr, addrLineNo, addrIndex);
 		}
 		
 		//Update set useinfo -- increment use count
 		update_useinfo(c, addrSet, addrLineNo);
-
-		//setUses[addrLineNo] += 1;
-		
-
-	} else { //LINE NOT FOUND
-//		printf("Miss\n");
 	
-		//Search next cache layer for element
-		//void *retValue = value;
-
+	} else { //LINE NOT FOUND
 		//Access next lvl of cache or memory
 				
 		//Get address of full block of memory
@@ -151,67 +131,17 @@ int cache_access (cache_t *c, addr_t addr, void *value, int size, int iswrite) {
 		}
 
 		//Write fetched block to current cache (regardless of operation)
-
-		//Find least used line in set useinfo
-//		int leastInd = 0;
-/*		for (int i = 1; i < c->cache_E; i++) {
-			if ((int) setUses[i] < setUses[leastInd]) {
-				leastInd = i;
-			}
-			if (setUses[leastInd]== 0) break; //Break loop if unused line is found
-		}
-*/
 		cacheline_t *evictLine = &(addrSet->lines[setUses[0]]);
 
 		//Check for write back before evicting
 		if (evictLine->dirty) {
-			printf("Writeback\n");
-
-//			cache_t *curLvl = c;
-//			int curIndex;
-//			addr_t curTag;
-//			cacheline_t *curLine;
 			//Calculate address of evicted line in each cache
 			addr_t writeAddr = evictLine->tag << c->cache_s; //Add tag and shift for set index
 			writeAddr += addrIndex; //Add set index
 			writeAddr = writeAddr << LOGBSIZE; //Shift for offset bits (left empty)
 
-/*//////////////////////
-			while (curLvl->cache_next != NULL) {
-				curLvl = curLvl->cache_next;
-
-				curIndex = writeAddr >> LOGBSIZE;
-				curIndex = curIndex & ((1 << curLvl->cache_s) - 1); //Get set index for current level
-				curTag = writeAddr >> (LOGBSIZE + curLvl->cache_s); //Get element tag
-				
-				int goodWrite = 0; //Flag for successful writeback
-				//Write back to next level of cache
-				for (int i = 0; i < curLvl->cache_E; i++) {
-					curLine = &(curLvl->cache_sets[curIndex].lines[i]);
-					if (curLine->valid && curLine->tag == curTag) {
-						memmove(curLine->block, evictLine->block, BLOCK_SIZE);
-						curLine->dirty = 0; //Reset dirty bit on writeback
-						goodWrite = 1;
-						totalDelay += curLvl->cache_delay;
-						printf("Good write\n");
-					}
-				}
-
-				if (!goodWrite) fprintf(stderr, "Failed to write back to address %d in cache %p.\n", (int) writeAddr, curLvl); //Print bad writeback flag if necessary
-			}
-			//Write back to memory
-			mem_access(writeAddr, evictLine->block, BLOCK_SIZE, 1);
-*///////////////////////
-
 			if (c->cache_next != NULL) totalDelay += cache_access(c->cache_next, writeAddr, evictLine->block, BLOCK_SIZE, 1);
 			else totalDelay += mem_access(writeAddr, evictLine->block, BLOCK_SIZE, 1);
-
-/*			while (curLvl->cache_next != NULL) { //Recursively write back until memory level is reached
-				curLvl = curLvl->cache_next; 
-				totalDelay += cache_access(curLvl, writeAddr, evictLine->block, BLOCK_SIZE, 1);
-			}
-			totalDelay += mem_access(writeAddr, evictLine->block, BLOCK_SIZE, 1); //Write back to memory
-*/
 		}
 
 		evictLine->tag = addrTag;
@@ -227,10 +157,8 @@ int cache_access (cache_t *c, addr_t addr, void *value, int size, int iswrite) {
 
 		evictLine->dirty = iswrite; //Set dirty bit if operation was a write
 		
-		//Reset usage count for all lines???
-
+		//Update set useinfo
 		update_useinfo(c,addrSet, setUses[0]); 
-		//setUses[leastInd] = 1; //Set number of uses for line
 		
 		free(blockBuf);
 	}
@@ -269,7 +197,7 @@ static void update_useinfo (cache_t *c, cacheset_t *set, int lineNo) {
 		if (setUses[i] == lineNo) break; //Find position of addrLineNo in line parmutation array
 	}
 	for (; i+1 < c->cache_E; i++) {
-		setUses[i] = setUses[i+1];
+		setUses[i] = setUses[i+1]; //Shift all following elements
 	}
-	setUses[c->cache_E - 1] = lineNo;
+	setUses[c->cache_E - 1] = lineNo; //Move most recently used line to end
 }
