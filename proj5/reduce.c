@@ -14,7 +14,6 @@
  * need any other synchronization.
  */
 
-#define MAXLEN 249
 
 void reduce(int numprocs, int me, amap_t *map,
 	    pipe_t *reducepipes, pipe_t *driverpipes) {
@@ -22,21 +21,21 @@ void reduce(int numprocs, int me, amap_t *map,
   close(driverpipes[me].readfd);
   close(reducepipes[me].writefd);
 
-  char *strbuf[MAXLEN];
+  char strbuf[MAXSTRING];
   int *cntbuf;
   int rv;
   //Read while write end of reducepipe is open
-  while (readPair(reducepipe[me].readfd, strbuf, cntbuf) > 0) {
+  while (readpair(reducepipes[me].readfd, strbuf, cntbuf) > 0) {
   	//Increment count of string key in map
 	amap_incr(map, strbuf, *cntbuf);
   }
 
   while (amap_getnext(map, strbuf, cntbuf)) {
 	//Write pair to driverpipe
-	writePair(driverpipe[me].writefd, strbuf, cntbuf)
+	writepair(driverpipes[me].writefd, strbuf, cntbuf);
   }
   /* Finally, close write end of driverpipe[me], to tell driver I'm done. */
-  close(driverpipe[me].writefd);
+  close(driverpipes[me].writefd);
 
   exit(0);
 }    

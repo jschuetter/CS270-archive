@@ -110,22 +110,22 @@ static void count_words(FILE *f, amap_t *m) {
  * Otherwise, ignore
  */
 void process_file(char *name,  amap_t *m)  {
-  /******** YOUR CODE  HERE ************/
-
-  /* What kind of file is it?
-   * Hint: use check_type()
-   */
-  
-  /* if FTYPE_REG: use  count_words().  Note arg types expected by it.
-   *    Hint: fdopen().
-   * Hint: account for what check_type() does with a regular file.
-   */
-  
-  /* if FTYPE_DIR: use opendir  and readdir t0 get entries,
-   *    and recursively process each.
-   */
-
-  /* if anything else, ignore it. */
+  int *fd;
+  switch (check_type(name, fd)) {
+	case FTYPE_REG: //Is text file
+		//Convert fd to FILE
+		FILE *f = fdopen(*fd, "r");
+		count_words(f, m); //Hint: account for what check_type does with a regular file. - ??
+		break;
+	case FTYPE_DIR: //Is directory
+		DIR *dir = opendir(name);
+		struct dirent *next_file;
+		while ((next_file = readdir(dir)) != NULL) { //Recursively address next file
+			process_file((char *)(next_file->d_name), m);
+		}
+		break;
+	default: //Otherwise, do nothing		
+  }	
 }
 
 /* 
@@ -143,16 +143,21 @@ void process_file(char *name,  amap_t *m)  {
  * THIS FUNCTION DOES NOT RETURN
  */
 void scanner(int nprocs, amap_t *map, char *startname, pipe_t *reducepipes) {
-  /************* YOUR CODE HERE *********************/
-  /* first call process_file() on the startname. */
+  process_file(startname, map);
+  
+  //Write pairs to reducers
+  char strbuf[MAXSTRING];
+  int *cntbuf;
+  while (amap_getnext(map, strbuf, cntbuf)) {
+	int init_char = strbuf[0];
+	init_char -= 'a'; //Normalize character values for indexing into pipe array
+	int pipeno = whichpipe[init_char];
+	writepair(reducepipes[pipeno].writefd, strbuf, cntbuf);
+  }
 
-  /* Then write each (string,count) pair in the map to the appropriate
-   * reducer.
-   * Hint: use amap_getnext().
-   * Hint: whichpipe maps character #s ('a'=0, 'b'=1, etc.) to reduce  pipe #s.
-   */
+  //Close write ends of reducepipes
+  for (int i = 0; i < nprocs; i++) 
+	close(reducepipes[i].writefd);
 
-  /* Then close my write end of each reduce pipe. */
-
-  exit(0); // all done!
+  exit(0); 
 }
