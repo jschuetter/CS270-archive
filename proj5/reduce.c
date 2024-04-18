@@ -14,24 +14,29 @@
  * need any other synchronization.
  */
 
+#define MAXLEN 249
+
 void reduce(int numprocs, int me, amap_t *map,
 	    pipe_t *reducepipes, pipe_t *driverpipes) {
+  //Close unneeded pipe ends
+  close(driverpipes[me].readfd);
+  close(reducepipes[me].writefd);
 
-  /******* YOUR CODE HERE ****/
+  char *strbuf[MAXLEN];
+  int *cntbuf;
+  int rv;
+  //Read while write end of reducepipe is open
+  while (readPair(reducepipe[me].readfd, strbuf, cntbuf) > 0) {
+  	//Increment count of string key in map
+	amap_incr(map, strbuf, *cntbuf);
+  }
 
-  /* first close all pipe ends that we won't be using */
-
-  /* Then read from "my" reducepipe, summing pairs in the map.
-   * Note: map is empty at this point.
-   * Hint: use  readpair() in aux.c.
-   */
-
-  /* Now dump the map counts to the driver pipe.
-   * Hint: amap_getnext() returns pairs one-at-a-time, in sorted order.
-   * Hit: Use writepair() in aux.c.
-   */
-
+  while (amap_getnext(map, strbuf, cntbuf)) {
+	//Write pair to driverpipe
+	writePair(driverpipe[me].writefd, strbuf, cntbuf)
+  }
   /* Finally, close write end of driverpipe[me], to tell driver I'm done. */
+  close(driverpipe[me].writefd);
 
   exit(0);
 }    
