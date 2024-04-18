@@ -79,7 +79,7 @@ static int check_type(char  *name, int *fd) {
     return FTYPE_REG;
   } else if ((finfo.st_mode & S_IFMT) == S_IFDIR)
     return FTYPE_DIR;
-  else return FTYPE_SKIP;  // who knows?
+  else return FTYPE_SKIP; // who knows?
 } 
 
 /* read from file, splitting input into alphabetic tokens */
@@ -111,20 +111,26 @@ static void count_words(FILE *f, amap_t *m) {
  */
 void process_file(char *name,  amap_t *m)  {
   int *fd;
-  switch (check_type(name, fd)) {
+  printf("Processng %s, ", name);
+  int rv = check_type(name, fd);
+  printf("filetype: %d\n", rv);
+  switch (rv/*check_type(name, fd)*/) {
 	case FTYPE_REG: //Is text file
 		//Convert fd to FILE
 		FILE *f = fdopen(*fd, "r");
 		count_words(f, m); //Hint: account for what check_type does with a regular file. - ??
-		break;
+		printf("Words counted\n");
+		return;
 	case FTYPE_DIR: //Is directory
 		DIR *dir = opendir(name);
 		struct dirent *next_file;
 		while ((next_file = readdir(dir)) != NULL) { //Recursively address next file
-			process_file((char *)(next_file->d_name), m);
+			//char *filename = strcat(strcat(name, "/"), next_file->d_name);
+			//printf("Next file name: %s\n", next_file->d_name);
+			if (next_file->d_name[0] != '.') process_file(next_file->d_name, m);
 		}
-		break;
-	default: //Otherwise, do nothing		
+		return;
+	default: return; //Otherwise, do nothing		
   }	
 }
 
@@ -143,8 +149,11 @@ void process_file(char *name,  amap_t *m)  {
  * THIS FUNCTION DOES NOT RETURN
  */
 void scanner(int nprocs, amap_t *map, char *startname, pipe_t *reducepipes) {
+  printf("Scanner function\n");
+
   process_file(startname, map);
-  
+  printf("File processed\n");
+
   //Write pairs to reducers
   char strbuf[MAXSTRING];
   int *cntbuf;
@@ -153,11 +162,16 @@ void scanner(int nprocs, amap_t *map, char *startname, pipe_t *reducepipes) {
 	init_char -= 'a'; //Normalize character values for indexing into pipe array
 	int pipeno = whichpipe[init_char];
 	writepair(reducepipes[pipeno].writefd, strbuf, cntbuf);
+	printf("Wrote %s to map.\n", strbuf);
   }
+  printf("Pairs written to map\n");
 
   //Close write ends of reducepipes
-  for (int i = 0; i < nprocs; i++) 
+  for (int i = 0; i < nprocs; i++) {
 	close(reducepipes[i].writefd);
+	printf("Closed reducepipes[%d].writefd\n", i);
+  }
+  printf("Exiting scanner process.\n");
 
   exit(0); 
 }

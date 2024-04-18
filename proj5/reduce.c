@@ -17,6 +17,8 @@
 
 void reduce(int numprocs, int me, amap_t *map,
 	    pipe_t *reducepipes, pipe_t *driverpipes) {
+  printf("Reduce function\n");
+
   //Close unneeded pipe ends
   close(driverpipes[me].readfd);
   close(reducepipes[me].writefd);
@@ -28,14 +30,17 @@ void reduce(int numprocs, int me, amap_t *map,
   while (readpair(reducepipes[me].readfd, strbuf, cntbuf) > 0) {
   	//Increment count of string key in map
 	amap_incr(map, strbuf, *cntbuf);
+	printf("Pair read in reduce()\n");
   }
 
   while (amap_getnext(map, strbuf, cntbuf)) {
 	//Write pair to driverpipe
 	writepair(driverpipes[me].writefd, strbuf, cntbuf);
+	printf("Pair written from reduce()\n");
   }
   /* Finally, close write end of driverpipe[me], to tell driver I'm done. */
   close(driverpipes[me].writefd);
+  printf("Closed driverpipes[%d].writefd and exited reduce process\n", me);
 
   exit(0);
 }    
