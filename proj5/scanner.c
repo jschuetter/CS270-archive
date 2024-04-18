@@ -110,7 +110,7 @@ static void count_words(FILE *f, amap_t *m) {
  * Otherwise, ignore
  */
 void process_file(char *name,  amap_t *m)  {
-  int *fd;
+  int *fd = malloc(sizeof(int));
   printf("Processng %s, ", name);
   int rv = check_type(name, fd);
   printf("filetype: %d\n", rv);
@@ -120,18 +120,27 @@ void process_file(char *name,  amap_t *m)  {
 		FILE *f = fdopen(*fd, "r");
 		count_words(f, m); //Hint: account for what check_type does with a regular file. - ??
 		printf("Words counted\n");
-		return;
+		break;
 	case FTYPE_DIR: //Is directory
 		DIR *dir = opendir(name);
 		struct dirent *next_file;
 		while ((next_file = readdir(dir)) != NULL) { //Recursively address next file
-			//char *filename = strcat(strcat(name, "/"), next_file->d_name);
-			//printf("Next file name: %s\n", next_file->d_name);
-			if (next_file->d_name[0] != '.') process_file(next_file->d_name, m);
+			//printf("Next file: %s\n", next_file->d_name);
+			//Append directory to file path
+                        char filename[MAXSTRING];
+                        strcpy(filename, name);
+                        strcat(filename, "/");
+                        strcat(filename, next_file->d_name);
+                        //strcat("td1/", (char *)next_file->d_name);
+                        //printf("Filename: %s\n", filename);
+                        //char *filename = next_file->d_name;
+                        if (next_file->d_name[0] != '.') process_file(filename, m); //only process visible files
 		}
-		return;
-	default: return; //Otherwise, do nothing		
+		break;
+	default: //Otherwise, do nothing
   }	
+  free(fd);
+  return;
 }
 
 /* 
@@ -155,21 +164,23 @@ void scanner(int nprocs, amap_t *map, char *startname, pipe_t *reducepipes) {
   printf("File processed\n");
 
   //Write pairs to reducers
-  char strbuf[MAXSTRING];
-  int *cntbuf;
+  char strbuf[250];
+  int *cntbuf = malloc(sizeof(int));
   while (amap_getnext(map, strbuf, cntbuf)) {
+	//printf("Next: %s, count: %d\n", strbuf, *cntbuf);
 	int init_char = strbuf[0];
 	init_char -= 'a'; //Normalize character values for indexing into pipe array
 	int pipeno = whichpipe[init_char];
 	writepair(reducepipes[pipeno].writefd, strbuf, cntbuf);
-	printf("Wrote %s to map.\n", strbuf);
+	//printf("Wrote %s to map.\n", strbuf);
   }
+  free(cntbuf);
   printf("Pairs written to map\n");
 
   //Close write ends of reducepipes
   for (int i = 0; i < nprocs; i++) {
 	close(reducepipes[i].writefd);
-	printf("Closed reducepipes[%d].writefd\n", i);
+	printf("Closed reducepipes[%d].writefd, fd=%d\n", i, reducepipes[i].writefd);
   }
   printf("Exiting scanner process.\n");
 

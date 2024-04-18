@@ -24,22 +24,23 @@ void reduce(int numprocs, int me, amap_t *map,
   close(reducepipes[me].writefd);
 
   char strbuf[MAXSTRING];
-  int *cntbuf;
+  int *cntbuf = malloc(sizeof(int));
   int rv;
   //Read while write end of reducepipe is open
-  while (readpair(reducepipes[me].readfd, strbuf, cntbuf) > 0) {
+  while (rv = readpair(reducepipes[me].readfd, strbuf, cntbuf) > 0) {
   	//Increment count of string key in map
 	amap_incr(map, strbuf, *cntbuf);
-	printf("Pair read in reduce()\n");
+	//printf("Pair read in reduce()\n");
   }
 
-  while (amap_getnext(map, strbuf, cntbuf)) {
+  while (rv = amap_getnext(map, strbuf, cntbuf)) {
 	//Write pair to driverpipe
 	writepair(driverpipes[me].writefd, strbuf, cntbuf);
 	printf("Pair written from reduce()\n");
   }
-  /* Finally, close write end of driverpipe[me], to tell driver I'm done. */
+  
   close(driverpipes[me].writefd);
+  free(cntbuf);
   printf("Closed driverpipes[%d].writefd and exited reduce process\n", me);
 
   exit(0);
