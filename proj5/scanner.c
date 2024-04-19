@@ -164,7 +164,7 @@ void scanner(int nprocs, amap_t *map, char *startname, pipe_t *reducepipes) {
   printf("File processed\n");
 
   //Write pairs to reducers
-  char strbuf[250];
+  char strbuf[MAXSTRING];
   int *cntbuf = malloc(sizeof(int));
   while (amap_getnext(map, strbuf, cntbuf)) {
 	//printf("Next: %s, count: %d\n", strbuf, *cntbuf);
